@@ -16,6 +16,7 @@ body{
 .landing{
     background-image: url(../assets/retro.jpg);
     height: 100vh;
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
@@ -23,7 +24,7 @@ body{
 .landing .navbar{
     display: flex;
     justify-content: space-between;
-    padding: 20px 30px;
+    padding: 20px 30px 0px 30px;
     font-family: 'Philosopher', sans-serif;
     font-size: 25px;
     color: #bf9999;
