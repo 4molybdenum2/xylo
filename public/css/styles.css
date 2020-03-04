@@ -61,7 +61,7 @@ body{
   }
 
 #travelblog{
-    margin-left: 10.5vw !important;
+    margin-left: 13.75vw !important;
 }
 
 .landing-text{
@@ -74,7 +74,6 @@ body{
     padding: 150px 200px;
     font-family: 'Markazi Text', serif;
 }
-
 
 .landing-text p{
     color: #bf9999;
@@ -167,6 +166,6 @@ body{
     line-height: 1.6;
     font-size: 20px;
     padding: 20vh 20vw;
-    background-color: #99bf99;
+    background-color: #000;
     color: whitesmoke;
 }

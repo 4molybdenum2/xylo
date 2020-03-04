@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/stylesabout.css">   
-    <title>About Page</title>
-</head>
-<body>
-    <div class="landing-about">
+<link rel="stylesheet" href="/css/stylesabout.css">
+<div class="landing-about">
         <div class="about-navbar">
             <h2>about</h2>
             <div>
@@ -27,21 +18,12 @@
 
     <!-- The social media icon bar -->
     <div class="icon-bar">
-    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-    <a href="#" class="google"><i class="fa fa-google"></i></a>
-    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-    <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
-    </div>
-    <script href="/js/app.js">
-        let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', '${vh}px');
-
-        const landtext = document.querySelector('landing-text');
-        const discover = document.querySelector('button');
-        const iconbar = documetn.querySelector('icon-bar');
-
-        
-    </script>
-</body>
-</html>
+    <a id="socialmedia" href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+    <a id="socialmedia" href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+    <a id="socialmedia" href="#" class="google"><i class="fa fa-google"></i></a>
+    <a id="socialmedia" href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+    <a id="socialmedia" href="#" class="youtube"><i class="fa fa-youtube"></i></a>
+</div>
+<script>
+    gsap.from("#socialmedia" ,{duration: 1, y:50 ,delay:1.1, opacity:0,stagger: 0.2});
+</script>
