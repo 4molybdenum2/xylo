@@ -46,10 +46,18 @@
         <a id="socialmedia" href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
         <a id="socialmedia" href="#" class="youtube"><i class="fa fa-youtube"></i></a>
     </div>
+
+    <div class="locations">
+        <a href="#">Japan</a>
+        <a href="#">Norway</a>
+        <a href="#">Finland</a>
+        <a href="#">Australia</a>
+    </div>
     
     <script>
         gsap.from(".landing-text-anim", {opacity: 0, duration: 1, y: -100 ,ease: Power1, stagger: 0.6,delay:1.1});
         gsap.from("#socialmedia" ,{duration: 1, y:50 , delay:2.2, opacity:0,stagger: 0.2});
+        gsap.from(".locations" ,{duration: 1, y:50 , delay:2.2, opacity:0,stagger: 0.2});
         gsap.from(".buttons", {opacity: 0,duration: 1, x: -100, ease: Power1, stagger: 0.2, delay: 1.1});
         var action = gsap.timeline().from(".card", {opacity: 0, duration: 1,y: -100, ease: Power1, stagger: 0.4,delay: 0.6});
 
