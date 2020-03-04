@@ -169,3 +169,36 @@ body{
     background-color: #000;
     color: whitesmoke;
 }
+
+.stories{
+    background-image: url(../assets/seaside1.jpg);
+    height: 100vh;
+    /* height: calc(var(--vh,1vh)*100); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.heading{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Philosopher',sans-serif;
+    color: #79607d;
+}
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 90vh;
+}
+.card{
+    margin: 20px;
+    min-height: 400px;
+    min-width: 300px;
+    background-color: white;
+    border-radius: 10%;
+}
