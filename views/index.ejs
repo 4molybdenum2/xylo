@@ -1,7 +1,6 @@
-
     <div class="landing">
         <div class="navbar">
-            <h2>.xylo</h2>
+            <h2 id="xylo">.xylo</h2>
             <h2 id="travelblog">TRAVEL   BLOG</h2>
             <div>
                 <p>
@@ -28,11 +27,11 @@
         </div>
     </section>
 
-    <div class="stories">
+    <div id="stories" class="stories">
         <div id="mystories" class="heading">
             <h2>My Stories</h2>
         </div>
-        <div class="flex-container">
+        <div id="pinnedelement1" class="flex-container">
             <div class="card">Hi I am Molybdenum</div>
             <div class="card">Hi I am Molybdenum</div>
             <div class="card">Hi I am Molybdenum</div>
@@ -47,8 +46,20 @@
         <a id="socialmedia" href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
         <a id="socialmedia" href="#" class="youtube"><i class="fa fa-youtube"></i></a>
     </div>
+    
     <script>
         gsap.from(".landing-text-anim", {opacity: 0, duration: 1, y: -100 ,ease: Power1, stagger: 0.6,delay:1.1});
         gsap.from("#socialmedia" ,{duration: 1, y:50 , delay:2.2, opacity:0,stagger: 0.2});
         gsap.from(".buttons", {opacity: 0,duration: 1, x: -100, ease: Power1, stagger: 0.2, delay: 1.1});
+        var action = gsap.timeline().from(".card", {opacity: 0, duration: 1,y: -100, ease: Power1, stagger: 0.4,delay: 0.6});
+
+        // scrollmagic
+        var controller = new ScrollMagic.Controller();
+
+        new ScrollMagic.Scene({
+            triggerElement: ".stories",
+            triggerHook:2.5,
+            reverse: true,
+        }).setTween(action)
+        .addTo(controller);
     </script>
