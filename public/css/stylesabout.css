@@ -16,7 +16,9 @@
     background-image: url(../assets/mountain2.jpg);  
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
+    height: calc(var(--vh,1vh)*100);
 }
 
 .about-navbar{
@@ -27,16 +29,33 @@
     font-size: 25px;
     color: #ffffff;
 }
-
-.about-navbar a{
-    text-decoration: none;
-    padding: 20px;
-    color: #ffffff;
-    transition: 0.5s ease;
+.buttons{
+  text-decoration: none;
+  padding: 20px 20px 0px 0px;
+  color: white;
+  display: inline;
+  overflow: hidden;
+  position: relative;
 }
 
-.about-navbar a:hover{
-    font-size: 27px;
+.buttons:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  width: 0;
+  bottom: -1px;
+  background: white;
+  height: 2px;
+  transition-property: width;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+}
+.buttons:hover:after,
+.buttons:focus:after,
+.buttons:active:after {
+  left: 0;
+  width: 74%;
 }
 
 .landing-about-text{
@@ -62,7 +81,6 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
-  
   /* Style the icon bar links */
   .icon-bar a {
     display: block;

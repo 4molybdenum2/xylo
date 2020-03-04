@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css?family=Aclonica|Baloo+Bhai|Lobster+Two|Markazi+Text|Philosopher&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    font-size: 17px;
+    color: #000000;
+}
+
+.landing{
+    background-image: url(../assets/retro.jpg);
+    height: 100vh;
+    height: calc(var(--vh,1vh)*100);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.landing > .navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px 0px 30px;
+    font-family: 'Philosopher', sans-serif;
+    font-size: 25px;
+    color: #bf9999;
+}
+
+.buttons{
+    text-decoration: none;
+    padding: 20px 20px 0px 0px;
+    color: #bf9999;
+    display: inline;
+    overflow: hidden;
+    position: relative;
+}
+
+.buttons:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    width: 0;
+    bottom: -1px;
+    background: #bf9999;
+    height: 2px;
+    transition-property: width;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+  }
+  .buttons:hover:after,
+  .buttons:focus:after,
+  .buttons:active:after {
+    left: 0;
+    width: 74%;
+  }
+
+#travelblog{
+    margin-left: 10.5vw !important;
+}
+
+.landing-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8vh;
+    text-align: center;
+    padding: 150px 200px;
+    font-family: 'Markazi Text', serif;
+}
+
+
+.landing-text p{
+    color: #bf9999;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.landing-text .button{
+    font-size: 25px;
+    text-decoration: none;
+    color: #bf9999;
+    border: #bf9999 1px solid;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.5s ease;
+}
+
+.landing-text .button:hover{
+    color: #d8d8d8;
+    background-color: #bf9999;
+}
+/* 
+.landing .navbar a:hover{
+    font-size: 27px;
+} */
+
+/* Fixed/sticky icon bar (vertically aligned 50% from the top of the screen) */
+.icon-bar {
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  
+/* Style the icon bar links */
+.icon-bar a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    border-radius: 50% !important;
+    transition: all 0.3s ease;
+    color: #bf9999;
+    font-size: 20px;
+  }
+  
+  /* Style the social media icons with color, if you want */
+  .icon-bar a:hover {
+    background-color: #bf9999;
+  }
+  
+  .facebook:hover {
+    color: white;
+  }
+  
+  .twitter:hover {
+    color: white;
+  }
+  
+  .google:hover {
+      color: white;
+  }
+  
+  .linkedin:hover {
+    color: white;
+  }
+  
+  .youtube:hover {
+    color: white;
+  }
+
+@media only screen and (max-width: 635px){
+    .landing-text p{ 
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 635px )and (max-width: 1051px){
+    .landing-text .button{
+        color: #d8d8d8;
+        background-color: #bf9999;
+    }
+}
+
+.introduction{
+    display: block;
+    box-sizing: border-box;
+    line-height: 1.6;
+    font-size: 20px;
+    padding: 20vh 20vw;
+    background-color: #99bf99;
+    color: whitesmoke;
+}
