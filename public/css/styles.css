@@ -128,23 +128,7 @@ body{
     background-color: #bf9999;
   }
   
-  .facebook:hover {
-    color: white;
-  }
-  
-  .twitter:hover {
-    color: white;
-  }
-  
-  .google:hover {
-      color: white;
-  }
-  
-  .linkedin:hover {
-    color: white;
-  }
-  
-  .youtube:hover {
+  .facebook:hover, .twitter:hover, .google:hover, .linkedin:hover, .youtube:hover {
     color: white;
   }
 
