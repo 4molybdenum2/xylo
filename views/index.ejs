@@ -1,4 +1,10 @@
-    <div class="landing">
+    <div class="preloader">
+        <h1>旅行是艺术</h1>
+        <p>.xylo</p>
+        <br>
+        <div class="spinner"></div>
+    </div>
+    <div id="landing" class="landing">
         <div class="navbar">
             <h2 id="xylo">.xylo</h2>
             <h2 id="travelblog">TRAVEL   BLOG</h2>
@@ -48,17 +54,18 @@
     </div>
 
     <div class="locations">
-        <a href="#">Japan</a>
-        <a href="#">Norway</a>
-        <a href="#">Finland</a>
-        <a href="#">Australia</a>
+        <a id="japan" href="#" onmouseover="handleCity('../assets/japan.jpg')">Japan</a>
+        <a id="norway" href="#" onmouseover="handleCity('../assets/norway.jpg')">Norway</a>
+        <a id="beijing" href="#" onmouseover="handleCity('../assets/beijing.jpg')">Beijing</a>
+        <a id="australia" href="#" onmouseover="handleCity('../assets/retro.jpg')">Puerto</a>
     </div>
     
     <script>
-        gsap.from(".landing-text-anim", {opacity: 0, duration: 1, y: -100 ,ease: Power1, stagger: 0.6,delay:1.1});
-        gsap.from("#socialmedia" ,{duration: 1, y:50 , delay:2.2, opacity:0,stagger: 0.2});
-        gsap.from(".locations" ,{duration: 1, y:50 , delay:2.2, opacity:0,stagger: 0.2});
-        gsap.from(".buttons", {opacity: 0,duration: 1, x: -100, ease: Power1, stagger: 0.2, delay: 1.1});
+
+        gsap.from(".landing-text-anim", {opacity: 0, duration: 1, y: -100 ,ease: Power1, stagger: 0.6,delay:2.1});
+        gsap.from("#socialmedia" ,{duration: 1, y:50 , delay:3.2, opacity:0,stagger: 0.2});
+        gsap.from(".locations" ,{duration: 1, y:50 , delay:3.2, opacity:0,stagger: 0.2});
+        gsap.from(".buttons", {opacity: 0,duration: 1, x: -100, ease: Power1, stagger: 0.2, delay: 2.1});
         var action = gsap.timeline().from(".card", {opacity: 0, duration: 1,y: -100, ease: Power1, stagger: 0.4,delay: 0.6});
 
         // scrollmagic
@@ -70,4 +77,10 @@
             reverse: true,
         }).setTween(action)
         .addTo(controller);
+
+        const handleCity = (cityBackground)=>{
+            document.querySelector('.landing').style.backgroundImage = `url(${cityBackground})`;
+            
+        }
+        
     </script>

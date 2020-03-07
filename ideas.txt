@@ -2,3 +2,4 @@ https://www.digitalocean.com/community/tutorials/build-a-blog-using-expressjs-an
 https://vegibit.com/node-js-blog-tutorial/
 https://auth0.com/blog/create-a-simple-and-stylish-node-express-app/
 https://dribbble.com/shots/9520214-Travel-Blog
+https://github.com/janpaepke/ScrollMagic/wiki/Tutorial-:-Anchor-Navigation
