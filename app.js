@@ -13,7 +13,8 @@ app.use(express.static(path.join(__dirname,'node_modules')));
 //Routes
 app.use('/' , require('./routes/index'));
 app.use('/' , require('./routes/about'));
-app.use('/',require('./routes/admin'));
+app.use('/' , require('./routes/admin'));
+app.use('/' , require('./db/db.js'));
 
 app.get('/' , (req,res)=>{
     res.send('Welcome');
