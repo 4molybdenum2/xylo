@@ -59,7 +59,7 @@ body{
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    transition: all 0.3s ease;
+    transition: all 0.7s ease;
 }
 
 .landing > .navbar{
@@ -170,23 +170,7 @@ body{
     background-color: #ffffff;
   }
   
-  .facebook:hover {
-    color: white;
-  }
-  
-  .twitter:hover {
-    color: white;
-  }
-  
-  .google:hover {
-      color: white;
-  }
-  
-  .linkedin:hover {
-    color: white;
-  }
-  
-  .youtube:hover {
+  .facebook:hover, .twitter:hover, .google:hover, .linkedin:hover, .youtube:hover {
     color: white;
   }
 
