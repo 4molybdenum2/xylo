@@ -1,0 +1,82 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: black;
+}
+
+.bgOpacity {
+  background: url("/assets/loginBg.jpg");
+  background-size: cover;
+  opacity: 0.6;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.wrapper {
+  z-index: 2;
+  background: white;
+  overflow: hidden;
+  border-radius: 10px;
+  min-width: 450px;
+  min-height: 300px;
+  width: 50vw;
+  height: 50vh;
+  position: relative;
+}
+
+form {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 50px;
+  height: calc(100% - 50px);
+}
+
+a{
+    bottom: 0;
+    right: 10px;
+    position: absolute;
+}
+
+.form-input-div {
+  width: 50%;
+  height: 50px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.input {
+  font-weight: 600;
+  color: #666666;
+  width: calc(100% - 98px);
+  background: #e6e6e6;
+  height: 100%;
+  border-radius: 25px;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 0 30px 0 68px;
+  border: none;
+  outline: none;
+}
+
+.iconContainer {
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 30px);
+  height: 100%;
+  padding-left: 30px;
+  color: #666666;
+  position: absolute;
+  pointer-events: none;
+}

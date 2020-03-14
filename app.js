@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
+const bodyParser = require('body-parser');
 
 app.use(expressLayouts);
 app.set("view engine", "ejs");
@@ -10,8 +11,13 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "node_modules")));
 
+// Body Parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
 //Routes
 app.use("/", require("./routes/route"));
+app.use("/", require("./routes/user"));
 
 app.get("/", (req, res) => {
   res.send("Welcome");

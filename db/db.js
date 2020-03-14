@@ -5,8 +5,8 @@ const router = express.Router();
 const connection = mysql.createConnection(
     {
         host:'localhost',
-        user:'root',
-        password:'Durgapuja123@',
+        user:'webkriti',
+        password:'Web_2020',
         database:'webkriti2020'
     }
 );
@@ -17,9 +17,9 @@ connection.connect((err)=>{
     }
 );
 
-//Create Database
+// Create Database
 // router.get('/database',(req,res)=>{
-//     var sql = 'CREATE DATABASE WebKriti2020';
+//     var sql = 'CREATE DATABASE webkriti2020';
 //     connection.query(sql , (err,result)=>{
 //         if(err) throw err;
 //         console.log('result');
@@ -28,4 +28,4 @@ connection.connect((err)=>{
 // });
 
 module.exports = connection;
-module.exports = router;
+// module.exports = router;
