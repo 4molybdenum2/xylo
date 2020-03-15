@@ -5,11 +5,8 @@ router.get("/about", (req, res) => {
   res.render("about");
 });
 
-router.get("/homepage", (req, res) => {
+router.get("/", (req, res) => {
   res.render("index");
 });
 
-router.get("/database",(req,res)=>{
-  res.send("Database");
-});
 module.exports = router;
