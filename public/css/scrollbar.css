@@ -1,0 +1,14 @@
+/* Hidden Scrollbar */
+*::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* 
+body::-webkit-scrollbar-thumb {
+  background-color: #03c1f3;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+} */

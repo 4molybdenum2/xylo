@@ -3,12 +3,20 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
 const bodyParser = require('body-parser');
+const session = require('express-session');
+
+app.use(session({
+  secret: 'some random key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {maxAge: 360000}
+}));
 
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 
 //serving static files
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "node_modules")));
 
 // Body Parser
@@ -18,10 +26,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 //Routes
 app.use("/", require("./routes/route"));
 app.use("/", require("./routes/user"));
-
-app.get("/", (req, res) => {
-  res.send("Welcome");
-});
 
 const PORT = process.env.PORT || 5000;
 
