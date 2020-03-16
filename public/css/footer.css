@@ -1,0 +1,27 @@
+.footer{
+    background-color: rgba(22, 23, 29, 0.9);
+    display: flex;
+    width: 100%;
+    padding: 10px 50px 0 50px;
+    color: white;
+}
+
+.footer > .links,.social{
+    padding-right: 50px;
+}
+
+.link-list{
+    display: block;
+    list-style: none;
+}
+
+.link-item > a{
+    text-decoration: none;
+    color: #ffffff;
+}
+.link-item > a > i{
+    margin-right: 7px;
+}
+.link-list > li{
+    margin-bottom: 10px;
+}

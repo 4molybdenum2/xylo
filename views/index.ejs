@@ -4,25 +4,41 @@
         <br>
         <div class="spinner"></div>
     </div>
+    <div class="menu-wrap">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger">
+          <div></div>
+        </div>
+        <div class="menu">
+          <div>
+            <div>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="login">Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     <div id="landing" class="landing">
         <div class="navbar">
             <h2 id="xylo">.xylo</h2>
-            <h2 id="travelblog">TRAVEL   BLOG</h2>
-            <div>
+            <!-- <div>
                 <p>
                     <a class="buttons" href="./about">about</a>
                     <a class="buttons" href="#">forum</a>
                     <a class="buttons" href="./login">login</a>
                 </p>
-            </div>
+            </div> -->
         </div>
 
-        <div class="landing-text">            
+        <div class="landing-text">
+            <h1>Lifetimes of Travelling and Photography...</h1>            
             <p class="landing-text-anim">
-                The woods are lovely, dark and deep<br>
-                But I have promises to keep<br>
-                And miles to go before I sleep<br>
-                And miles to go before I sleep.<br>
+                For us travelling is the most <strong>inspiring and exciting</strong> form of photography.<br>
+                Every capture is unique, every trip a new experience and this is why <br><strong>we love what we
+                do.</strong>
             </p>
             <a class="button landing-text-anim" href="#">Discover</a>
         </div>
@@ -43,20 +59,20 @@
                 <h2 class="feature-content-title red-text">Parallax Layout</h2>
                 <p class="feature-content-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit modi minus saepe esse a incidunt vel cupiditate unde natus voluptatum.
                 </p>
-                <a href="#" class="feature-content-link red-btn">Button Red</a>
+                <a href="#" class="feature-content-link black-button">Read More</a>
             </div>
             <div class="feature-content">
                 <img id="Image" src="assets/1-1.jpg" alt="Image">
                 <h2 class="feature-content-title green-text">Entire History</h2>
                 <p class="feature-content-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit modi minus saepe esse a incidunt vel cupiditate unde natus voluptatum.
                 </p>
-                <a href="#" class="feature-content-link green-btn">button green</a>
+                <a href="#" class="feature-content-link black-button">Read More</a>
             </div>
             <div class="feature-content">
                 <img id="Image" src="assets/1-2.jpg" alt="Image">
                 <h2 class="feature-content-title blue-text">Existensial Crisis</h2>
                 <p class="feature-content-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit modi minus saepe esse a incidunt vel cupiditate unde natus voluptatum.</p>                    
-                <a href="#" class="feature-content-link blue-btn">See Details</a>
+                <a href="#" class="feature-content-link black-button">Read More</a>
             </div>
         </div>
     </div>
@@ -70,12 +86,31 @@
         <a id="socialmedia" href="#" class="youtube"><i class="fa fa-youtube"></i></a>
     </div>
 
-    <div class="locations">
-        <a id="japan" href="#" onmouseover="handleCity('../assets/japan.jpg')">Japan</a>
-        <a id="norway" href="#" onmouseover="handleCity('../assets/norway.jpg')">Norway</a>
-        <a id="beijing" href="#" onmouseover="handleCity('../assets/beijing.jpg')">Beijing</a>
-        <a id="australia" href="#" onmouseover="handleCity('../assets/retro.jpg')">Puerto</a>
-    </div>
+    <footer>
+        <div class="footer">
+            <div class="links">
+                <br>
+                    <h2>Links</h2>
+                <br>
+                <ul class="link-list">
+                    <li class="link-item"><a href="#">Home</a></li>
+                    <li class="link-item"><a href="#">About</a></li>
+                    <li class="link-item"><a href="#">Login</a></li>
+                </ul>
+            </div>
+            <div class="social">
+                <br>
+                    <h2>Social Media </h2>
+                <br>
+                <ul class="link-list">
+                    <li class="link-item"><a href="https://www.facebook.com/ecell.iiitmG/"><i class="fa fa-facebook fa-lg"></i>facebook</a></li>
+                    <li class="link-item"><a href="https://www.linkedin.com/company/e-cell-iiit-gwalior/"><i class="fa fa-linkedin fa-lg"></i>linkedin</a></li>
+                    <li class="link-item"><a href="https://www.instagram.com/ecell_iiitm"><i class="fa fa-instagram fa-lg"></i>instagram</a></li>
+                </ul>
+            </div>
+    
+        </div>
+    </footer>
     
     <script>
 
@@ -94,17 +129,5 @@
             reverse: true,
         }).setTween(action)
         .addTo(controller);
-
-        const handleCity = (cityBackground)=>{
-            if(cityBackground == '../assets/beijing.jpg'){
-                document.querySelector('.landing-text-anim').style.color = 'white';
-                document.querySelector('.landing').style.backgroundImage = `url(${cityBackground})`;
-            }
-            else{
-                document.querySelector('.landing-text-anim').style.color = 'black';
-                document.querySelector('.landing').style.backgroundImage = `url(${cityBackground})`;
-            }
-            
-        }
         
     </script>
