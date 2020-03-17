@@ -4,3 +4,4 @@ https://auth0.com/blog/create-a-simple-and-stylish-node-express-app/
 https://dribbble.com/shots/9520214-Travel-Blog
 https://github.com/janpaepke/ScrollMagic/wiki/Tutorial-:-Anchor-Navigation
 https://academy.realm.io/posts/realm-node-js-express-blog-tutorial/
+https://medium.com/dev-bits/a-guide-for-adding-jwt-token-based-authentication-to-your-single-page-nodejs-applications-c403f7cf04f4

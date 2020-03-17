@@ -164,19 +164,18 @@ body{
     padding: 16px;
     border-radius: 50% !important;
     transition: all 0.3s ease;
-    color: #000;
+    color: #fff;
     font-size: 20px;
   }
   
   /* Style the social media icons with color, if you want */
   .icon-bar a:hover {
-    color: #000;
-    background-color: #ffffff;
+    background-color: #000;
   }
   
-  .facebook:hover, .twitter:hover, .google:hover, .linkedin:hover, .youtube:hover {
+  /* .facebook:hover, .twitter:hover, .google:hover, .linkedin:hover, .youtube:hover {
     color: white;
-  }
+  } */
 
 @media only screen and (max-width: 635px){
     .landing-text p{ 
@@ -277,3 +276,5 @@ body{
   color: white;
   text-decoration: none;
 }
+
+/* TODO: Dashboard page styling */

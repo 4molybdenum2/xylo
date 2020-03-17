@@ -2,6 +2,22 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const connection = require("../db/db");
+const multer = require('multer');
+const path = require('path');
+
+// Storage Engine
+const storageEngine = multer.diskStorage({
+  destination: '../uploads/',
+  filename: function(req, file, cb){
+    cb(null, file.fieldname + '_' + req.sessionID + '_' + Date.now() + path.extname(file.originalname));
+    console.log(req.sessionID);
+  }
+});
+
+// Upload
+const upload = multer({
+  storage: storageEngine
+}).single('img');
 
 router.get("/admin", (req, res) => {
   if (req.session.userId) {
@@ -96,9 +112,21 @@ router.post("/login", (req, res) => {
         req.session.userId = user.id;
         req.session.userName = user.name;
         req.session.userType = user.user_type;
+        req.session.cookie.uid = user.id;
         res.redirect("/dashboard");
       } else res.render("login", { isError: true, msg: "Incorrect Password" });
     } else res.render("login", { isError: true, msg: "User not found" });
+  });
+});
+
+router.post("/upload", (req, res) => {
+  console.log(req.session.cookie);
+  upload(req, res, (err) => {
+    if(err)
+      res.send(err);
+    else{
+      res.send('success');
+    }
   });
 });
 
