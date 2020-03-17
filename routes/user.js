@@ -65,7 +65,7 @@ router.post("/register", (req, res) => {
             if(err) res.status(500).send(err);
         });
 
-        res.status(200).render("/login", { email: mail });
+        res.status(200).render("login", { email: mail });
     }
   });
 });

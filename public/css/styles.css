@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Aclonica|Baloo+Bhai|Lobster+Two|Markazi+Text|Philosopher&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC:700,900&display=swap&subset=chinese-traditional" rel="stylesheet');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Lobster');
 *{
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 body{
@@ -11,6 +12,7 @@ body{
     line-height: 1.6;
     font-size: 17px;
     color: #000000;
+    overflow-x: hidden;
 }
 .preloader{
     position: fixed;
@@ -72,7 +74,9 @@ body{
     color: #000 !important;
 }
 
-
+#xylo{
+    font-family: 'Lobster';
+}
 .buttons{
     text-decoration: none;
     padding: 20px 20px 0px 0px;

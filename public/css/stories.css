@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Acme|Lobster|Sen&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bgImage{
+    height: 66vh;
+    background-image: url(../assets/paris.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#logo{
+    top: 10vh;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    font-family: 'Lobster',sans-serif;
+    font-size: 24px;
+}
+.heading{
+    top: 25vh;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    font-family: 'Sen',sans-serif;
+    font-size: 48px;
+}
+
+.content{
+    display: block;
+    box-sizing: border-box;
+    line-height: 1.6;
+    font-size: 20px;
+    padding: 20vh 20vw;
+    background-color: #000;
+    color: whitesmoke;
+}
