@@ -32,3 +32,22 @@
         </form>
     </div>
 </div>
+
+<% if(isError) { %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+        console.log('<% errorList %>');
+        // swal({
+        //     title: "Error",
+        //     text: '<%= errorList %>',
+        //     buttons: {confirm: {
+        //         text: "OK",
+        //         closeModal: true
+        //     }}, 
+        //     icon: "error",
+        //     closeOnClickOutside: false,
+        //     closeOnEsc: false,
+        // });
+    </script>
+<% } %>

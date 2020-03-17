@@ -46,3 +46,20 @@
     background-color: #000;
     color: whitesmoke;
 }
+
+.comments{
+    font-family: 'Roboto';
+    display: block;
+    box-sizing: border-box;
+    font-size: 17px;
+    background-color: #000;
+    color: whitesmoke;
+    padding: 0 20vw 20vh 20vw;
+}
+
+#name{
+    color: skyblue;
+}
+#comment-content{
+    width: 30vw;
+}
