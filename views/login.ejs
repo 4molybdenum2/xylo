@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="/css/style_login_register.css">
-<div class="main">
+<div class="main" onload="test">
     <div class="bgOpacity"></div>
     <div class="wrapper">
         <form method="POST">
             <h1 style="margin-bottom: 30px;">Member Login</h1>
             <div class="form-input-div">
-                <input type="email" name="mail" placeholder="E-Mail" class="input">
+                <input type="email" name="mail" placeholder="E-Mail" value="<%= email %>" class="input">
                 <span class="iconContainer">
                     <i class="fa fa-envelope"></i>
                 </span>
@@ -21,3 +21,9 @@
         <a href="/register">REGISTER</a>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script>
+    $(window).on('load', () => swal("test"));
+</script>

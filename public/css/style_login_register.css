@@ -49,6 +49,7 @@ a{
 
 .form-input-div {
   width: 50%;
+  min-width: 250px;
   height: 50px;
   margin-bottom: 15px;
   position: relative;
