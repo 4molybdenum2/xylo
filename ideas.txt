@@ -5,3 +5,5 @@ https://dribbble.com/shots/9520214-Travel-Blog
 https://github.com/janpaepke/ScrollMagic/wiki/Tutorial-:-Anchor-Navigation
 https://academy.realm.io/posts/realm-node-js-express-blog-tutorial/
 https://medium.com/dev-bits/a-guide-for-adding-jwt-token-based-authentication-to-your-single-page-nodejs-applications-c403f7cf04f4
+https://scotch.io/tutorials/use-ejs-to-template-your-node-application
+https://www.tutorialkart.com/nodejs/node-js-mysql-select-from-query-examples/

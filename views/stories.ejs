@@ -1,28 +1,22 @@
 <!--in users database add comments fields and attach them to the required sections-->
 <!--goto http://www.cookiesound.com/ for inspiration-->
 <link rel="stylesheet" href="/css/stories.css">
-<div class="stories">
-    <div class="bgImage"></div>
-
+<div id="stories" class="stories">
+    <div id="bgImage" class="bgImage"></div>
     <div id="logo">
         <h2>.xylo</h2>
     </div>
     <div class="heading">
-        <h1 class="title">Midnight in Paris</h1>
+        <h1 class="title"><%= obj.print[0].title %></h1>
     </div>
 
     <div class="content">
-        <span id="date">17th March</span>&nbsp;
+        <span id="date"><%= obj.print[0].date %></span>&nbsp;
         <span>✦</span>
-        <span id="place">Paris</span>
-        <h1 id="title">Midnight in Paris</h1>
+        <span id="place"><%= obj.print[0].place %></span>
+        <h1 id="title"><%= obj.print[0].title %></h1>
         <p id="story">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi odit officia voluptates, vero, quo laborum ex assumenda aliquam,
-            maxime quas ullam molestias amet harum quaerat voluptas iure ducimus rem a! Pariatur harum, ipsum beatae asperiores, eveniet, perferendis
-            assumenda recusandae placeat itaque incidunt praesentium laborum temporibus vitae error hic eos a voluptate repellat cum dolores.
-            Eveniet dolorem et minima neque architecto velit omnis sit aperiam in commodi nam sint voluptas temporibus,
-            maxime dicta ut praesentium quos repellat ab maiores? Eligendi, libero sint voluptas, est voluptatibus dolorum rem aperiam veniam
-            corporis accusamus ipsam autem consectetur rerum saepe ullam consequuntur architecto, maiores debitis?
+            <%= obj.print[0].content %>
         </p>
         <br>
         <p>_______________________________________________________________________________________</p>
