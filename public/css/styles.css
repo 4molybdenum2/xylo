@@ -232,6 +232,7 @@ body{
     justify-content: center;
     font-weight: bold;
     font-size: 25px;
+    margin-bottom: 20px;
     font-family: 'Philosopher',sans-serif;
     color: white;
 }
