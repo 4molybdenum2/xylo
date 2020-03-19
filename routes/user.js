@@ -6,18 +6,18 @@ const multer = require('multer');
 const path = require('path');
 
 // Storage Engine
-const storageEngine = multer.diskStorage({
-  destination: '../uploads/',
-  filename: function(req, file, cb){
-    cb(null, file.fieldname + '_' + req.sessionID + '_' + Date.now() + path.extname(file.originalname));
-    console.log(req.sessionID);
-  }
-});
+// const storageEngine = multer.diskStorage({
+//   destination: '../uploads/',
+//   filename: function(req, file, cb){
+//     cb(null, file.fieldname + '_' + req.sessionID + '_' + Date.now() + path.extname(file.originalname));
+//     console.log(req.sessionID);
+//   }
+// });
 
 // Upload
-const upload = multer({
-  storage: storageEngine
-}).single('img');
+// const upload = multer({
+//   storage: storageEngine
+// }).single('img');
 
 router.get("/admin", (req, res) => {
   if (req.session.userId) {
@@ -119,15 +119,15 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.post("/upload", (req, res) => {
-  console.log(req.session.cookie);
-  upload(req, res, (err) => {
-    if(err)
-      res.send(err);
-    else{
-      res.send('success');
-    }
-  });
-});
+// router.post("/upload", (req, res) => {
+//   console.log(req.session.cookie);
+//   upload(req, res, (err) => {
+//     if(err)
+//       res.send(err);
+//     else{
+//       res.send('success');
+//     }
+//   });
+// });
 
 module.exports = router;
