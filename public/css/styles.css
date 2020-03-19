@@ -128,7 +128,7 @@ body{
 }
 
 .landing-text h1{
-    width: auto;
+    font-size: 48px;
     color: #991a0e;
 }
 .landing-text p{
@@ -188,7 +188,18 @@ body{
   } */
 
 @media only screen and (max-width: 635px){
+    .landing-text h1{
+        display: none;
+    }
     .landing-text p{ 
+        display: none;
+    }
+
+    .landing-text .button{
+        margin-top: 20vh;
+    }
+
+    .feature-content-description{
         display: none;
     }
 }
@@ -212,7 +223,7 @@ body{
 
 .stories{
     background-color: black;
-    height: 100vh;
+    height: 100%;
     box-sizing: border-box;
 }
 
@@ -228,12 +239,31 @@ body{
 
 .flex-container{
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 30px;
     grid-template-columns: 1fr 1fr 1fr;
     margin-left: 10vh;
     margin-right: 10vh;
+    min-width: 0;
+}
+@media only screen and (max-width: 1023px) {
+    .flex-container {
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
+@media only screen and (max-width: 500px) {
+    .flex-container {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    }
+}
+
+.empty-space{
+    background-color: #000;
+    width: 100%;
+    height: 30vh;
+}
 .black-button{ background: black;}
 .green-text { color: #178A27; }
 .blue-text { color: #1686C1; }
@@ -255,7 +285,7 @@ body{
     width: 100%; 
 }
 .feature-content-title {
-    padding: 0 20px;
+    padding: 10px 20px;
     text-align: left;
     font-family: 'Philosopher',sans-serif;    
 }
