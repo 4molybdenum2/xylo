@@ -9,11 +9,4 @@ const connection = mysql.createPool(
     }
 );
 
-connection.connect((err)=>{
-        if(err) throw err;
-        console.log('Database Connected');
-    }
-);
-
 module.exports = connection;
-
