@@ -4,7 +4,11 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     scroll-behavior: smooth;
+    /* background-color: #000 !important;
+    color: #0f0 !important;
+    outline: solid #f00 1px !important; */
 }
 
 body{
@@ -12,7 +16,12 @@ body{
     line-height: 1.6;
     font-size: 17px;
     color: #000000;
+    width: 100%;
     overflow-x: hidden;
+}
+
+.container{
+    width: 100vw;
 }
 .preloader{
     position: fixed;
@@ -54,9 +63,11 @@ body{
     100% { transform: rotate(360deg); }
   }
 
+
 .landing{
     background-image: url(../assets/japan.jpg);
     height: 100vh;
+    width: 100%;
     /* height: calc(var(--vh,1vh)*100); */
     background-repeat: no-repeat;
     background-position: center;
@@ -106,11 +117,6 @@ body{
     width: 74%;
   }
 
-
-#travelblog{
-    margin-left: 13.75vw !important;
-}
-
 .landing-text{
     display: flex;
     flex-direction: column;
@@ -122,13 +128,13 @@ body{
 }
 
 .landing-text h1{
-    font-size: 72px;
+    font-size: 48px;
     color: #991a0e;
 }
 .landing-text p{
     color: #000;
     font-size: 25px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .landing-text .button{
@@ -182,7 +188,18 @@ body{
   } */
 
 @media only screen and (max-width: 635px){
+    .landing-text h1{
+        display: none;
+    }
     .landing-text p{ 
+        display: none;
+    }
+
+    .landing-text .button{
+        margin-top: 20vh;
+    }
+
+    .feature-content-description{
         display: none;
     }
 }
@@ -206,7 +223,7 @@ body{
 
 .stories{
     background-color: black;
-    height: 100vh;
+    height: 100%;
     box-sizing: border-box;
 }
 
@@ -215,20 +232,39 @@ body{
     justify-content: center;
     font-weight: bold;
     font-size: 25px;
+    margin-bottom: 20px;
     font-family: 'Philosopher',sans-serif;
     color: white;
 }
 
 
 .flex-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    min-height: 90vh;
-    margin: 0 10vh 0 10vh;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 10vh;
+    margin-right: 10vh;
+    min-width: 0;
+}
+@media only screen and (max-width: 1023px) {
+    .flex-container {
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
+@media only screen and (max-width: 500px) {
+    .flex-container {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    }
+}
+
+.empty-space{
+    background-color: #000;
+    width: 100%;
+    height: 30vh;
+}
 .black-button{ background: black;}
 .green-text { color: #178A27; }
 .blue-text { color: #1686C1; }
@@ -242,16 +278,15 @@ body{
 .feature-content {
     background: #F2F2F2;
     padding-bottom: 40px;
-    min-height: 300px;
-    width: 400px;
-    margin: 20px;
+    height: 500px;
 }
 
 #Image{
+    height: 250px;
     width: 100%; 
 }
 .feature-content-title {
-    padding: 0 20px;
+    padding: 10px 20px;
     text-align: left;
     font-family: 'Philosopher',sans-serif;    
 }

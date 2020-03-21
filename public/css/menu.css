@@ -110,8 +110,8 @@
   .menu-wrap .menu > div {
     background: black;
     border-radius: 50%;
-    width: 200vw;
-    height: 200vw;
+    width: 600vw;
+    height: 600vh;
     display: flex;
     flex: none;
     align-items: center;
