@@ -4,9 +4,36 @@
     <div style="float: right;"><a href="/logout">Logout</a></div>
   </nav>
 
+  <br><br><br>
+  <form
+    id="uploadForm"
+    action="https://script.google.com/macros/s/AKfycbwzMLIjY3aFRsgEjaGKhmJt-MyhzgY6ouDMfbBh2EHCCYm6SbA/exec"
+    method="POST"
+  >
+    <input type="hidden" name="fileContent" id="fileContent" />
+    <input type="hidden" name="filename" id="filename" />
+    <input type="hidden" name="uid" id="uid" value="<%= uid %>" />
+    <input type="text" name="title" id="title" placeholder="title" />
+    <input type="text" name="content" id="content" placeholder="con" />
+    <input type="text" name="place" id="place" placeholder="place" />
+  </form>
+  <input type="file" name="attach" id="attach" required />
+  <input type="button" value="Submit" onclick="UploadFile();" />
+
   <script>
-    document.getElementById()
+    function UploadFile() {
+      var reader = new FileReader();
+      var file = document.getElementById("attach").files[0];
+      reader.onload = function() {
+        document.getElementById("fileContent").value = reader.result;
+        document.getElementById("filename").value = file.name;
+        document.getElementById("uploadForm").submit();
+      };
+      reader.readAsDataURL(file);
+    }
   </script>
 
-  <div class="posts"></div>
+  <div class="posts">
+    
+  </div>
 </div>

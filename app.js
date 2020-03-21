@@ -5,11 +5,12 @@ const path = require("path");
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
+// 10 Minute expiry time
 app.use(session({
   secret: 'some random key',
   resave: false,
   saveUninitialized: true,
-  cookie: {maxAge: 360000}
+  cookie: {maxAge: 600000}
 }));
 
 app.use(expressLayouts);
