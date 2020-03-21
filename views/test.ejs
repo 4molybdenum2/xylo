@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="uploadForm" action="https://script.google.com/macros/s/AKfycbwzMLIjY3aFRsgEjaGKhmJt-MyhzgY6ouDMfbBh2EHCCYm6SbA/exec" method="POST">
+        <input type="hidden" name="fileContent" id="fileContent">
+        <input type="hidden" name="filename" id="filename">
+        <input type="text" name="name" id="name" value="<%= uid %>">
+        <input type="text" name="email" id="email">
+        <input type="text" name="contact" id="contact">
+        <input type="text" name="skillsets" id="skillsets">
+        <input type="text" name="linkedinUrl" id="linkedinUrl">
+    </form>
+    <input type="file" name="attach" id="attach" required>
+    <input type="button" value="Submit" onclick="UploadFile();">
+
+    <script>
+        function UploadFile(){
+            var reader = new FileReader();
+            var file = document.getElementById('attach').files[0];
+            reader.onload = function(){
+                document.getElementById('fileContent').value=reader.result;
+                document.getElementById('filename').value=file.name;
+                document.getElementById('uploadForm').submit();
+            }
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>
