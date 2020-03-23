@@ -27,7 +27,7 @@ body{
     position: fixed;
     top: 0;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     background-color: black;
     color: white;
     display: flex;
@@ -41,9 +41,9 @@ body{
 }
 
 .preload-finish{
-    -webkit-transform: translateY(100%);
-    -ms-transform: translateY(100%);
-    transform: translateY(100%);
+    -webkit-transform: translateY(100vh);
+    -ms-transform: translateY(100vh);
+    transform: translateY(100vh);
     opacity: 0;
     pointer-events: none;
 }
@@ -55,7 +55,7 @@ body{
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    animation: spin 2s linear infinite;
+    animation: spin 1.7s linear infinite;
 }
 
 @keyframes spin {
