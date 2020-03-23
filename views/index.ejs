@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/styles.css">
+<body id="body">
 <div class="preloader">
   <h1>旅行是艺术</h1>
   <h6>. x y l o</h6>
@@ -14,7 +15,7 @@
     <div>
       <div>
         <ul>
-          <li><a href="">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="register">Register</a></li>
           <li><a href="login">Login</a></li>
         </ul>
@@ -23,20 +24,21 @@
   </div>
 </div>
 <div id="landing" class="landing">
-  <div class="navbar">
-    <h2 id="xylo">.xylo</h2>
-  </div>
+    <nav>
+      <h2 id="xylo">.xylo</h2>
+    </nav>
 
-  <div class="landing-text">
-    <h1>Lifetimes of Travelling and Photography...</h1>
-    <p class="landing-text-anim">
-      For us travelling is the most <strong>inspiring and exciting</strong> form
-      of photography.<br />
-      Every capture is unique, every trip a new experience and this is why
-      <br /><strong>we love what we do.</strong>
-    </p>
-    <a class="button landing-text-anim" href="#stories" id="discover">Discover</a>
-  </div>
+    <div class="landing-text">
+      <h1>Lifetimes of Travelling and Photography...</h1>
+      <p class="landing-text-anim">
+        For us travelling is the most <strong>inspiring and exciting</strong> form
+        of photography.<br />
+        Every capture is unique, every trip a new experience and this is why
+        <br /><strong>we love what we do.</strong>
+      </p>
+      <a class="button landing-text-anim" href="#stories" id="discover">Discover</a>
+    </div>
+</div>
 </div>
 <section class="introduction">
   <div>
@@ -107,6 +109,8 @@
     </li>
   </ul>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
   gsap.from(".landing-text-anim", {
     opacity: 0,
@@ -149,6 +153,15 @@
       delay: 0.6
     });
 
+  // ScrollNav
+  const body = document.getElementById("body");
+  
+  window.addEventListener("scroll", () => {
+    var scrollPercent = ($(window).scrollTop()/window.innerHeight);
+    if(scrollPercent > 0.1)
+      console.log("test");
+  });
+
   // scrollmagic
   var controller = new ScrollMagic.Controller();
 
@@ -160,3 +173,4 @@
     .setTween(action)
     .addTo(controller);
 </script>
+</body>

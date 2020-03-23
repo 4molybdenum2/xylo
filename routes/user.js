@@ -40,14 +40,6 @@ router.get("/logout", (req, res) => {
   } else res.status(400).redirect("/login");
 });
 
-router.get("/test", (req, res) => {
-  if(req.session.userId)
-    res.status(200).render("test", {
-      uid: req.session.userId
-    });
-  else res.status(401).redirect("/login");
-});
-
 router.get("*", (req, res) => {
   res
     .status(404)

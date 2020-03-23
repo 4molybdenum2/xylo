@@ -6,11 +6,14 @@
     box-sizing: border-box;
 }
 
+#stories{
+    overflow-x: hidden;
+}
+
 .bgImage{
     height: 66vh;
-    background-image: url(../assets/paris.jpg);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
 }
 
