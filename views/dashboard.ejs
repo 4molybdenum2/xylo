@@ -6,6 +6,7 @@
   </nav>
 
   <!-- TODO: Test on Website ONLY -->
+  <!-- TODO: CAUTION: Iss form wale div me kuch change mat kar. -->
   <div class="form-content">
       <form
         id="uploadForm"
@@ -15,12 +16,13 @@
         <input type="hidden" name="fileContent" id="fileContent" />
         <input type="hidden" name="filename" id="filename" />
         <input type="hidden" name="uid" id="uid" value="<%= uid %>" />
+        <input type="hidden" name="content" id="content" />
         <h3>&nbsp;&nbsp;&nbsp;&nbsp;Title</h3>
         <input type="text" name="title" id="title" placeholder="" />
         <h3> &nbsp;&nbsp;&nbsp;&nbsp;Content</h3>
-        <textarea rows="1" cols="50" wrap="physical" id="content"></textarea>
+        <textarea rows="1" cols="50" wrap="physical" id="textContent"></textarea>
         <h3> &nbsp;&nbsp;&nbsp;&nbsp;Place</h3>
-        <input type="text" name="place" id="place" placeholder="" />
+        <input type="text" name="place" id="place" />
       </form>
   </div>
   <div class="files">
@@ -37,6 +39,7 @@
     var reader = new FileReader();
     var file = document.getElementById("attach").files[0];
     reader.onload = function() {
+      document.getElementById("content").value = document.getElementById("textContent").value;
       document.getElementById("fileContent").value = reader.result;
       document.getElementById("filename").value = file.name;
       document.getElementById("uploadForm").submit();
