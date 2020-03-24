@@ -6,26 +6,28 @@
   <br />
   <div class="spinner"></div>
 </div>
-<div class="menu-wrap">
-  <input type="checkbox" class="toggler" />
-  <div class="hamburger">
-    <div></div>
-  </div>
-  <div class="menu">
-    <div>
-      <div>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="register">Register</a></li>
-          <li><a href="login">Login</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div id="landing" class="landing">
-    <nav>
+    <nav id="nav">
       <h2 id="xylo">.xylo</h2>
+      <div class="menu-wrap">
+        <input type="checkbox" class="toggler" />
+        <div class="hamburger">
+          <div></div>
+        </div>
+        <!-- TODO: Place menu on same height as .xylo -->
+        <div class="menu">
+          <div>
+            <div>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="register">Register</a></li>
+                <li><a href="login">Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <div class="landing-text">
@@ -55,6 +57,8 @@
   </div>
 </section>
 
+    <!-- TODO: Stories wale div ko scrolling rakhna hai. -->
+    <div class="stories-wrapper">
     <div id="stories" class="stories">
         <div id="mystories" class="heading">
             <h2>Trending Stories</h2>
@@ -67,26 +71,54 @@
                 </p>
                 <a href="stories/0" class="feature-content-link black-button">Read More</a>
             </div>
-            <div class="feature-content">
-                <img id="Image" src="assets/norway.jpg" alt="Image">
-                <h2 class="feature-content-title">A Dream in Norway</h2>
-                <p class="feature-content-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, vero.
-                </p>
-                <a href="stories/1" class="feature-content-link black-button">Read More</a>
-            </div>
-            <div class="feature-content">
-                <img id="Image" src="assets/1-2.jpg" alt="Image">
-                <h2 class="feature-content-title">Existensial Crisis</h2>
-                <p class="feature-content-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, eum.</p>                    
-                <a href="#" class="feature-content-link black-button">Read More</a>
-            </div>
-        </div>
-        <div class="empty-space"></div>
-    </div>
-    
+          </div>
 
+          <div id="pinnedelement2" class="flex-container">
+            <div class="feature-content">
+                <img id="Image" src="assets/paris.jpg" alt="Image">
+                <h2 class="feature-content-title">Midnight in Paris</h2>
+                <p class="feature-content-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, culpa.
+                </p>
+                <a href="stories/0" class="feature-content-link black-button">Read More</a>
+            </div>
+          </div>
+
+          <div id="pinnedelement3" class="flex-container">
+            <div class="feature-content">
+                <img id="Image" src="assets/paris.jpg" alt="Image">
+                <h2 class="feature-content-title">Midnight in Paris</h2>
+                <p class="feature-content-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, culpa.
+                </p>
+                <a href="stories/0" class="feature-content-link black-button">Read More</a>
+            </div>
+          </div>
+
+          <div id="pinnedelement4" class="flex-container">
+            <div class="feature-content">
+                <img id="Image" src="assets/paris.jpg" alt="Image">
+                <h2 class="feature-content-title">Midnight in Paris</h2>
+                <p class="feature-content-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, culpa.
+                </p>
+                <a href="stories/0" class="feature-content-link black-button">Read More</a>
+            </div>
+          </div>
+
+
+          <div id="pinnedelement5" class="flex-container">
+            <div class="feature-content">
+                <img id="Image" src="assets/paris.jpg" alt="Image">
+                <h2 class="feature-content-title">Midnight in Paris</h2>
+                <p class="feature-content-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, culpa.
+                </p>
+                <a href="stories/0" class="feature-content-link black-button">Read More</a>
+            </div>
+          </div>
+    </div>
+  </div>
+    
+<!-- TODO: Dekhle ye kaisa lag raha hai -->
 <!-- The social media icon bar -->
-<div class="icon-bar">
+<!-- <div class="icon-bar">
   <a id="socialmedia" href="#" class="facebook"
     ><i class="fa fa-facebook"></i
   ></a>
@@ -96,7 +128,7 @@
     ><i class="fa fa-linkedin"></i
   ></a>
   <a id="socialmedia" href="#" class="youtube"><i class="fa fa-youtube"></i></a>
-</div>
+</div> -->
 
 <div class="footer">
   <ul class="footer-items-list">
@@ -117,8 +149,8 @@
     duration: 1,
     y: -100,
     ease: Power1,
-    stagger: 0.6,
-    delay: 2.1
+    stagger: 0.1,
+    delay: 1.3,
   });
   gsap.from("#socialmedia", {
     duration: 1,
@@ -157,9 +189,13 @@
   const body = document.getElementById("body");
   
   window.addEventListener("scroll", () => {
+    var element = document.getElementById("nav");
     var scrollPercent = ($(window).scrollTop()/window.innerHeight);
-    if(scrollPercent > 0.1)
-      console.log("test");
+    if(scrollPercent > 0.1){
+      element.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+    }
+    else
+      element.style.backgroundColor = "transparent";
   });
 
   // scrollmagic

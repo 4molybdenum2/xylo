@@ -6,9 +6,7 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    /* background-color: #000 !important;
-    color: #0f0 !important;
-    outline: solid #f00 1px !important; */
+    outline: none;
 }
 
 body{
@@ -73,17 +71,23 @@ body{
     background-size: cover;
     background-attachment: fixed;
     transition: all 0.7s ease;
+    display: flex;
+    justify-content: center;
 }
 
-nav{
+#nav{
+    z-index: 3;
     position: fixed;
     top: 0;
+    left: 0;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
-    padding: 20px 30px 0px 30px;
+    padding: 13px 30px 7px 30px;
     font-family: 'Philosopher', sans-serif;
     font-size: 25px;
     color: #000 !important;
+    transition: 0.3s ease-in-out;
 }
 
 #xylo{
@@ -121,13 +125,12 @@ nav{
 
 .landing-text{
     position: absolute;
-    top: 120px;
+    top: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 70px 200px;
     font-family: 'Markazi Text', serif;
 }
 
@@ -187,7 +190,7 @@ nav{
     color: white;
   } */
 
-@media only screen and (max-width: 635px){
+@media only screen and (max-width: 700px){
     .landing-text h1{
         display: none;
     }
@@ -204,13 +207,6 @@ nav{
     }
 }
 
-@media only screen and (min-width: 635px )and (max-width: 1051px){
-    .landing-text .button{
-        color: #000;
-        background-color: #ffffff;
-    }
-}
-
 .introduction{
     display: block;
     box-sizing: border-box;
@@ -221,9 +217,17 @@ nav{
     color: whitesmoke;
 }
 
-.stories{
+.stories-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 600px;
     background-color: black;
-    height: 100%;
+}
+
+.stories{
+    height: 600px;
+    width: 70vw;
     box-sizing: border-box;
 }
 
@@ -237,15 +241,16 @@ nav{
     color: white;
 }
 
-
 .flex-container{
     display: grid;
     grid-gap: 30px;
     grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 10vh 20px 10vh;
     margin-left: 10vh;
     margin-right: 10vh;
     min-width: 0;
 }
+
 @media only screen and (max-width: 1023px) {
     .flex-container {
         -ms-grid-columns: 1fr 1fr;
@@ -315,5 +320,3 @@ nav{
   color: white;
   text-decoration: none;
 }
-
-/* TODO: Dashboard page styling */

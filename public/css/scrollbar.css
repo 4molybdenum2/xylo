@@ -4,11 +4,25 @@
   height: 0px;
 }
 
-/* 
-body::-webkit-scrollbar-thumb {
+*:focus{
+  outline: none;
+}
+
+textarea::-webkit-scrollbar, .stories::-webkit-scrollbar{
+  height: 2px;
+  width: 3px;
+  margin: 1px;
+}
+
+textarea::-webkit-scrollbar-thumb, .stories::-webkit-scrollbar-thumb {
   background-color: #03c1f3;
 }
 
-body::-webkit-scrollbar-track {
+textarea::-webkit-scrollbar-track, .stories::-webkit-scrollbar-track{
   background-color: transparent;
-} */
+}
+
+.stories {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
