@@ -86,21 +86,26 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
   const { mail, pass } = req.body;
 
-  if(!mail || !pass)
-    res.render("login", {isError: true, email: mail, msgTitle: "Invalid Input", msgBody: "Please fill-in all the details."})
-
-  connection.query("select * from users where email=?", [mail], (e, row) => {
-    if (e) res.status(500).send(e);
-    if (row.length) {
-      const user = row[0];
-      if (bcrypt.compareSync(pass, user.password_hash)) {
-        req.session.userId = user.id;
-        req.session.userName = user.name;
-        req.session.userType = user.user_type;
-        res.redirect("/dashboard");
-      }
-    } else res.render("login", {email: mail, isError: true, msgTitle: "Invalid Credentials", msgBody: "Incorrect E-Mail ID or Password" });
-  });
+  if(!mail || !pass){
+    res.render("login", {isError: true, email: mail, msgTitle: "Invalid Input", msgBody: "Please fill-in all the details."});
+    res.end();
+  }
+  else{
+    connection.query("select * from users where email=?", [mail], (e, row) => {
+      if (row.length) {
+        const user = row[0];
+        if (bcrypt.compareSync(pass, user.password_hash)) {
+          req.session.userId = user.id;
+          req.session.userName = user.name;
+          req.session.userType = user.user_type;
+          res.redirect("/dashboard");
+        }
+        else{
+          res.render("login", {email: mail, isError: true, msgTitle: "Invalid Credentials", msgBody: "Incorrect E-Mail ID or Password" });
+        }
+      } else res.render("login", {email: mail, isError: true, msgTitle: "Invalid Credentials", msgBody: "Incorrect E-Mail ID or Password" });
+    });
+  }
 });
 
 module.exports = router;
