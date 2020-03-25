@@ -1,9 +1,12 @@
+<link rel="stylesheet" href="/css/errorPage.css">
 <% if (errorCode == 404) { %>
-<div class="404">
-
+<div class="error404">
+    <h1>Error 404! Not Found</h1>
+    <p>Return to <a href="/">Homepage</a></p>
 </div>
 <% } else{ %>
-<div class="500">
-    
+<div class="error404">
+    <h1>Internal Server Error</h1>
+    <p>Return to <a href="/">Homepage</a></p>
 </div>
 <% } %>
