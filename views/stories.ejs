@@ -1,34 +1,60 @@
-<!--in users database add comments fields and attach them to the required sections-->
 <!--goto http://www.cookiesound.com/ for inspiration-->
-<link rel="stylesheet" href="/css/stories.css">
+<link rel="stylesheet" href="/css/stories.css" />
 <div id="stories" class="stories">
-    <div id="bgImage" class="bgImage" style="background: url(<%= fileurl %>);">
-    </div>
-    <div id="logo">
-        <h2>.xylo</h2>
-    </div>
-    <div class="heading">
-        <h1 class="title"><%= obj.print[0].title %></h1>
-    </div>
+  <!-- TODO: Image Positioning -->
+  <div
+    id="bgImage"
+    class="bgImage"
+    style="background: url(<%= fileurl %>) no-repeat;"
+  ></div>
+  <div id="logo">
+    <h2>.xylo</h2>
+  </div>
+  <div class="heading">
+    <h1 class="title"><%= obj.print[0].title %></h1>
+  </div>
 
-    <div class="content">
-        <span id="date"><%= obj.print[0].date %></span>&nbsp;
-        <span>✦</span>
-        <span id="place"><%= obj.print[0].place %></span>
-        <h1 id="title"><%= obj.print[0].title %></h1>
-        <p id="story">
-            <%= obj.print[0].content %>
-        </p>
-        <br>
-        <p>_______________________________________________________________________________________</p>
-    </div>
-    <div class="comments">
-        <h1 id="comment-heading">Comments:</h1>
-        <br><br>
-        <strong><h4 id="name">Abraham Lincoln</h6></strong>
-        <br>
-        <p id="comment-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, nostrum.
-        </p>
-    </div>
+  <div class="content">
+    <span id="date"><%= obj.print[0].date %></span>&nbsp;
+    <span>✦</span>
+    <span id="place"><%= obj.print[0].place %></span>
+    <h1 id="title"><%= obj.print[0].title %></h1>
+    <p id="story">
+      <%= obj.print[0].content %>
+    </p>
+    <br />
+    <p>
+      _______________________________________________________________________________________
+    </p>
+  </div>
+  <div class="comments">
+    Comments <br>
+    <% if(comments.length > 0) {
+        for(let i = 0; i < comments.length; i++) {
+        var element = comments[i]; %>
+    <label><%= element.name %></label>
+    <br>
+    <label><%= element.content %></label>
+    <% }}else{ %>
+        No comments yet...
+    <% } %>
+    <br />
+
+    <% if(uid != undefined) { %>
+    <form method="POST">
+      <label>Add a comment</label>
+      <br>
+      <textarea id="comment_text" cols="100" rows="2" maxlength="140" name="comment_text"></textarea>
+      <script>
+        comment_text.oninput = function() {
+          remaining.innerHTML = (140 - comment_text.value.length) + ' characters remaining...';
+        };
+      </script>
+      <br>
+      <label id="remaining"></label>
+      <br>
+      <input type="submit" value="Add comment">
+    </form>
+    <% } %>
+  </div>
 </div>

@@ -92,6 +92,7 @@ router.post("/login", (req, res) => {
   }
   else{
     connection.query("select * from users where email=?", [mail], (e, row) => {
+      if (e) throw e;
       if (row.length) {
         const user = row[0];
         if (bcrypt.compareSync(pass, user.password_hash)) {
@@ -99,9 +100,6 @@ router.post("/login", (req, res) => {
           req.session.userName = user.name;
           req.session.userType = user.user_type;
           res.redirect("/dashboard");
-        }
-        else{
-          res.render("login", {email: mail, isError: true, msgTitle: "Invalid Credentials", msgBody: "Incorrect E-Mail ID or Password" });
         }
       } else res.render("login", {email: mail, isError: true, msgTitle: "Invalid Credentials", msgBody: "Incorrect E-Mail ID or Password" });
     });

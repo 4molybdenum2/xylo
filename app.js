@@ -10,7 +10,7 @@ app.use(session({
   secret: 'some random key',
   resave: false,
   saveUninitialized: true,
-  cookie: {maxAge: 600000}
+  cookie: {maxAge: 900000}
 }));
 
 app.use(expressLayouts);
