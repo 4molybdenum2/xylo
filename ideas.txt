@@ -8,3 +8,5 @@ https://medium.com/dev-bits/a-guide-for-adding-jwt-token-based-authentication-to
 https://scotch.io/tutorials/use-ejs-to-template-your-node-application
 https://www.tutorialkart.com/nodejs/node-js-mysql-select-from-query-examples/
 https://www.ge.com/digitalvolcano/
+https://www.bucketlistly.blog/posts/ten-best-travel-blogs-design
+https://ricepotato.co/
