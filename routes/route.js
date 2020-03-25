@@ -48,11 +48,11 @@ router.get("/stories/:id", (req, res) => {
 });
 
 router.post("/stories/:id", (req, res) => {
-  const content = req.body.content;
-  if (!content || !req.session.userId) res.status(400).send("Invalid Input");
+  const txt = req.body.content;
+  if (!txt || !req.session.userId) res.status(400).send("Invalid Input");
 
-  let query = "insert into comments (content, person_name, post_id) values(?,?,?)";
-  let val = [content, req.session.name, parseInt(req.body.post_id)];
+  let query = "insert into comments set ?";
+  let val = {content: txt, person_name: req.session.userName, post_id: parseInt(req.params.id)};
   connection.query(query, val, err => {
     if (err) res.status(500).render("errorPage", { error: err.sqlMessage, errorCode: 500 });
     else res.redirect("/stories");
