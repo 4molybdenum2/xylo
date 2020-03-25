@@ -88,6 +88,7 @@ body{
     font-size: 25px;
     color: #000 !important;
     transition: 0.3s ease-in-out;
+    opacity: 1;
 }
 
 #xylo{
@@ -192,14 +193,16 @@ body{
 
 @media only screen and (max-width: 700px){
     .landing-text h1{
-        display: none;
+        font-size: 36px;
+
     }
     .landing-text p{ 
         display: none;
+        
     }
 
     .landing-text .button{
-        margin-top: 20vh;
+        margin-top: 10px;
     }
 
     .feature-content-description{
@@ -219,14 +222,15 @@ body{
 
 .stories-wrapper{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100vw;
-    height: 600px;
     background-color: black;
 }
 
 .stories{
-    height: 600px;
+    height: fit-content;
     width: 70vw;
     box-sizing: border-box;
 }
@@ -241,27 +245,30 @@ body{
     color: white;
 }
 
-.flex-container{
+.stories{
     display: grid;
     grid-gap: 30px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill , minmax(300px,1fr));
     margin: 0 10vh 20px 10vh;
-    margin-left: 10vh;
-    margin-right: 10vh;
     min-width: 0;
 }
 
-@media only screen and (max-width: 1023px) {
-    .flex-container {
-        -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
+@media only screen and (max-width: 900px) {
+    .stories{
+        -ms-grid-columns: repeat(auto-fill , minmax(200px,1fr));
+        grid-template-columns:repeat(auto-fill , minmax(200px,1fr));
+        margin: 0 15vh 20px 15vh;
     }
 }
 
 @media only screen and (max-width: 500px) {
-    .flex-container {
-        -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
+    .stories {
+        -ms-grid-columns: repeat(auto-fill , minmax(200px,1fr));
+        grid-template-columns: repeat(auto-fill , minmax(200px,1fr));
+        margin: 0 15vh 20px 15vh;
+    }
+    .footer{
+        display: none;
     }
 }
 
