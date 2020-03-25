@@ -293,7 +293,7 @@ body{
     height: 500px;
 }
 
-#Image{
+.image{
     height: 250px;
     width: 100%; 
 }

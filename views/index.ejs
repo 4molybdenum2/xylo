@@ -54,67 +54,28 @@
   </div>
 </section>
 
-    <!-- TODO: Stories wale div ko scrolling rakhna hai. -->
+    <!-- TODO: Stories wale div ko horizontally scrolling rakhna hai. -->
     <div class="stories-wrapper">
       <div id="mystories" class="heading">
         <h2>Trending Stories</h2>
       </div>
-    <div id="stories" class="stories">
-        <div id="pinnedelement1" class="flex-container">
-            <div class="feature-content">
-                <img id="Image" src="assets/paris.jpg" alt="Image">
-                <h2 class="feature-content-title">Midnight in Paris</h2>
-                <p class="feature-content-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, culpa.
-                </p>
-                <a href="stories/0" class="feature-content-link black-button">Read More</a>
-            </div>
+      <div id="stories" class="stories">
+        <% if(loading) { %>
+        <div class="spinner" style="position: absolute; left: 50%;"></div>
+        <% } else { 
+          postList.forEach((element, index) => {%>
+        <div id="pinnedelement<%= index %>" class="flex-container">
+          <div class="feature-content">
+            <div class="image" style="background: url('<%= element.fileurl %>') no-repeat center;"></div>
+            <h2 class="feature-content-title"><%= element.title %></h2>
+            <p class="feature-content-description"><%= element.content %></p>
+            <a href="stories/<%= index %>" class="feature-content-link black-button">Read More</a>
           </div>
-
-          <div id="pinnedelement2" class="flex-container">
-            <div class="feature-content">
-                <img id="Image" src="assets/paris.jpg" alt="Image">
-                <h2 class="feature-content-title">Midnight in Paris</h2>
-                <p class="feature-content-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, culpa.
-                </p>
-                <a href="stories/0" class="feature-content-link black-button">Read More</a>
-            </div>
-          </div>
-
-          <div id="pinnedelement3" class="flex-container">
-            <div class="feature-content">
-                <img id="Image" src="assets/paris.jpg" alt="Image">
-                <h2 class="feature-content-title">Midnight in Paris</h2>
-                <p class="feature-content-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, culpa.
-                </p>
-                <a href="stories/0" class="feature-content-link black-button">Read More</a>
-            </div>
-          </div>
-
-          <div id="pinnedelement4" class="flex-container">
-            <div class="feature-content">
-                <img id="Image" src="assets/paris.jpg" alt="Image">
-                <h2 class="feature-content-title">Midnight in Paris</h2>
-                <p class="feature-content-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, culpa.
-                </p>
-                <a href="stories/0" class="feature-content-link black-button">Read More</a>
-            </div>
-          </div>
-
-
-          <div id="pinnedelement5" class="flex-container">
-            <div class="feature-content">
-                <img id="Image" src="assets/paris.jpg" alt="Image">
-                <h2 class="feature-content-title">Midnight in Paris</h2>
-                <p class="feature-content-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, culpa.
-                </p>
-                <a href="stories/0" class="feature-content-link black-button">Read More</a>
-            </div>
-          </div>
+        </div>
+        <% });} %>
+      </div>
     </div>
-  </div>
     
-<!-- Yeh sahi hai -->
-<!-- The social media icon bar -->
 <div class="icon-bar">
   <a id="socialmedia" href="#" class="facebook"
     ><i class="fa fa-facebook"></i

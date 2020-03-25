@@ -41,7 +41,6 @@ router.get("/logout", (req, res) => {
   } else res.status(400).redirect("/login");
 });
 
-// TODO: 404
 router.get("*", (req, res) => {
   res
     .status(404)
