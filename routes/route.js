@@ -61,7 +61,7 @@ router.post("/stories/:id", (req, res) => {
     if (err)
       res.status(500).render("errorPage", { error: err, errorCode: 500 });
     else
-      res.status(200).redirect("/");
+      res.status(200).redirect("/stories");
   });
 });
 
