@@ -21,27 +21,38 @@ router.get("/stories/:id", (req, res) => {
         res.render("errorPage", { errorCode: 404 });
       } else {
         obj = { print: [rows[urlid]] };
-        comments = [];
-        connection.query(
-          "SELECT person_name, content FROM comments WHERE post_id = " +
-            obj.print[0].id,
-          (e, result) => {
-            if (e) throw e;
-            else
-              for (let i = 0; i < result.length; i++) comments.push(result[i]);
-          }
-        );
-
         fx = obj.print[0].fileurl;
         fileurl =
           "https://drive.google.com/uc?id=" +
           fx.slice(fx.search("d/") + 2, fx.search("/view"));
-        res.render("stories", {
-          obj: obj,
-          fileurl: fileurl,
-          comment: comments,
-          uid: req.session.userId
-        });
+
+        var comment = [];
+        connection.query(
+          "SELECT person_name, content FROM comments WHERE post_id = " +
+            connection.escape(obj.print[0].id),
+          (e, result) => {
+            if (e) throw e;
+            if (result.length){
+              result.forEach(element => {
+                comment.push(element);
+              });
+
+              res.render("stories", {
+                obj: obj,
+                fileurl: fileurl,
+                uid: req.session.userId,
+                comment: comment
+              });
+            }else{
+              res.render("stories", {
+                obj: obj,
+                fileurl: fileurl,
+                uid: req.session.userId,
+                comment: []
+              });
+            }
+          }
+        );
       }
     }
   });
@@ -52,10 +63,10 @@ router.post("/stories/:id", (req, res) => {
   if (!txt || !req.session.userId) res.status(400).send("Invalid Input");
 
   let query = "insert into comments set ?";
-  let val = {content: txt, person_name: req.session.userName, post_id: parseInt(req.params.id)};
+  let val = {content: txt, person_name: req.session.userName, post_id: parseInt(req.body.post_id)};
   connection.query(query, val, err => {
     if (err) res.status(500).render("errorPage", { error: err.sqlMessage, errorCode: 500 });
-    else res.redirect("/stories");
+    else res.redirect("/stories/"+req.params.id);
   });
 });
 

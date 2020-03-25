@@ -7,7 +7,7 @@ const connection = mysql.createPool(
         user:'bed860ac3797ea',
         password:'cc3737ee',
         database:'heroku_a279c24bfd19cf6',
-        typeCast: true
+        typeCast: true,
     }
 );
 

@@ -29,9 +29,9 @@
   </div>
   <div class="comments">
     Comments <br />
-    <% if(comments.length > 0) { for(let i = 0; i < comments.length; i++) { var
-    element = comments[i]; %>
-    <label><%= element.name %></label>
+    <% if(locals.comment.length > 0) { for(let i = 0; i < locals.comment.length; i++) { var
+    element = locals.comment[i]; %>
+    <label><%= element.person_name %></label>
     <br />
     <label><%= element.content %></label>
     <% }}else{ %> No comments yet... <% } %>
@@ -40,7 +40,7 @@
     <% if(uid != undefined) { %>
     <form method="POST">
       <input type="hidden" name="post_id" value="<%= obj.print[0].id %>"/>
-      <label>Add a comment</label>
+      <label>Add a locals.comment</label>
       <br />
       <textarea
         id="content"
@@ -58,7 +58,7 @@
       <br />
       <label id="remaining"></label>
       <br />
-      <input type="submit" value="Add comment" />
+      <input type="submit" value="Add locals.comment" />
     </form>
     <% } %>
   </div>
