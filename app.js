@@ -27,7 +27,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 //Routes
 app.use("/", require("./routes/route"));
 app.use("/", require("./routes/user"));
-// app.use("/", require("./routes/admin"));
 
 const PORT = process.env.PORT || 5000;
 

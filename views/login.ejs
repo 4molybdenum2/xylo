@@ -1,28 +1,51 @@
-<link rel="stylesheet" href="/css/style_login_register.css">
-<div class="main" onload="test">
-    <div class="bgOpacity"></div>
-    <div class="wrapper">
-        <form method="POST">
-            <h1 style="position: absolute; top: 40px">Member Login</h1>
-            <div class="form-input-div">
-                <input type="email" name="mail" placeholder="E-Mail" value="<%= email %>" class="input">
-                <span class="iconContainer">
-                    <i class="fa fa-envelope"></i>
-                </span>
-            </div>
-            <div class="form-input-div">
-                <input type="password" name="pass" placeholder="Password" class="input">
-                <span class="iconContainer">
-                    <i class="fa fa-lock"></i>
-                </span>
-            </div>
-            <input id="submit-button" type="submit" value="SUBMIT" style="margin-top: 10px;">
-        </form>
-        <a id="register-button" href="/register">Sign Up</a>
-    </div>
+<head>
+    <link rel="stylesheet" href="/css/style_login_register.css" />
+    <script>
+        // Avoid these errors
+        $(document).ready(() => {
+        if (<%= isError %>) {
+          var alertTitle = "<%= msgTitle %>";
+          var alertMessage = "<%= msgBody %>";
+          Swal.fire(alertTitle, alertMessage, "error");
+        }
+      });
+    </script>
+</head>
+<div class="main" onload="errorPage">
+  <div class="bgOpacity"></div>
+  <div class="wrapper">
+    <form method="POST">
+      <h1 style="position: absolute; top: 40px">Member Login</h1>
+      <div class="form-input-div">
+        <input
+          type="email"
+          name="mail"
+          placeholder="E-Mail"
+          value="<%- typeof(locals.email) == 'undefined' ? '' : email %>"
+          class="input"
+        />
+        <span class="iconContainer">
+          <i class="fa fa-envelope"></i>
+        </span>
+      </div>
+      <div class="form-input-div">
+        <input
+          type="password"
+          name="pass"
+          placeholder="Password"
+          class="input"
+        />
+        <span class="iconContainer">
+          <i class="fa fa-lock"></i>
+        </span>
+      </div>
+      <input
+        id="submit-button"
+        type="submit"
+        value="SUBMIT"
+        style="margin-top: 10px;"
+      />
+    </form>
+    <a id="register-button" href="/register">Sign Up</a>
+  </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-<script>
-    $(window).on('load', () => null);
-</script>

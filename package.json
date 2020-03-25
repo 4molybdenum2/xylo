@@ -26,8 +26,7 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.17.0",
-    "mysql": "^2.18.1",
-    "sweetalert2": "^9.10.1"
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

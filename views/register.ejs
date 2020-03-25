@@ -1,4 +1,16 @@
-<link rel="stylesheet" href="/css/style_login_register.css">
+<head>
+    <link rel="stylesheet" href="/css/style_login_register.css" />
+    <script>
+        // Avoid these errors
+        $(document).ready(() => {
+        if (<%= isError %>) {
+          var alertTitle = "<%= msgTitle %>";
+          var alertMessage = "<%= msgBody %>";
+          Swal.fire(alertTitle, alertMessage, "error");
+        }
+      });
+    </script>
+</head>
 <div class="main">
     <div class="bgOpacity"></div>
     <div class="wrapper">
