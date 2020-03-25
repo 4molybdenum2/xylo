@@ -40,23 +40,22 @@ router.get("/stories/:id", (req, res) => {
           obj: obj,
           fileurl: fileurl,
           comment: comments,
-          uid: req.session.userId,
+          uid: req.session.userId
         });
       }
     }
   });
 });
 
-router.post("/postcomment", (req, res) => {
-  const comment = req.body.comment_text;
-  if (!comment || !req.session.userId) res.status(400).send("Invalid Input");
+router.post("/stories/:id", (req, res) => {
+  const content = req.body.content;
+  if (!content || !req.session.userId) res.status(400).send("Invalid Input");
 
-  var query = "insert into comments values ?";
-  const val = [[comment, req.session.name, req.body.post_id]];
-
-  connection.query(query, [val], e => {
-    if (e) res.status(500).render("errorPage", { error: e, errorCode: 500 });
-    else res.redirect("back");
+  let query = "insert into comments (content, person_name, post_id) values(?,?,?)";
+  let val = [content, req.session.name, parseInt(req.body.post_id)];
+  connection.query(query, val, err => {
+    if (err) res.status(500).render("errorPage", { error: err.sqlMessage, errorCode: 500 });
+    else res.redirect("/stories");
   });
 });
 

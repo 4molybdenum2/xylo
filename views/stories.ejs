@@ -38,8 +38,8 @@
     <br />
 
     <% if(uid != undefined) { %>
-    <form method="POST" action="/postcomment">
-      <input type="hidden" name="post_id" value="<%= pid %>"/>
+    <form method="POST">
+      <input type="hidden" name="post_id" value="<%= obj.print[0].id %>"/>
       <label>Add a comment</label>
       <br />
       <textarea
