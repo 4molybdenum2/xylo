@@ -68,7 +68,7 @@ router.post("/register", (req, res) => {
       e.forEach(error => {
         eList = eList + "\n" + error;
       });
-      res.render("register", { msgTitle: "error", msgBody: eList, isError: true });
+      res.render("register", { isError: true, msgTitle: "error", msgBody: eList });
     } else {
       const passwordHash = bcrypt.hashSync(pass, 10);
       var query = "insert into users (name, email, password_hash) values ?";
