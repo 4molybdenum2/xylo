@@ -4,5 +4,5 @@ window.addEventListener("load", () => {
     const preloader = document.querySelector(".preloader");
     body.style.overflow="initial";
     preloader.classList.add("preload-finish");
-  }, 500);
+  }, 200);
 });

@@ -38,6 +38,11 @@ body{
     transition: opacity 0.5s ease;
 }
 
+@media only screen and (max-width: 500px){
+    .preloader{
+        font-size: 24px;
+    }
+}
 .preload-finish{
     -webkit-transform: translateY(100vh);
     -ms-transform: translateY(100vh);
