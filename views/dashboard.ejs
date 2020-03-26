@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/dashboard.css" />
 <div class="main">
   <nav class="navbar">
     <div>Welcome, <%= name %></div>
@@ -6,30 +6,29 @@
   </nav>
 
   <div class="form-content">
-      <form
-        id="uploadForm"
-        action="https://script.google.com/macros/s/AKfycbwzMLIjY3aFRsgEjaGKhmJt-MyhzgY6ouDMfbBh2EHCCYm6SbA/exec"
-        method="POST"
-      >
-        <input type="hidden" name="fileContent" id="fileContent" />
-        <input type="hidden" name="filename" id="filename" />
-        <input type="hidden" name="uid" id="uid" value="<%= uid %>" />
-        <h3>&nbsp;&nbsp;&nbsp;&nbsp;Title</h3>
-        <input type="text" name="title" id="title" />
-        <h3> &nbsp;&nbsp;&nbsp;&nbsp;Content</h3>
-        <textarea name="content" id="content" cols="30" rows="10"></textarea>
-        <h3> &nbsp;&nbsp;&nbsp;&nbsp;Place</h3>
-        <input type="text" name="place" id="place" />
-      </form>
+    <form
+      id="uploadForm"
+      action="https://script.google.com/macros/s/AKfycbwzMLIjY3aFRsgEjaGKhmJt-MyhzgY6ouDMfbBh2EHCCYm6SbA/exec"
+      method="POST"
+    >
+      <input type="hidden" name="fileContent" id="fileContent" />
+      <input type="hidden" name="filename" id="filename" />
+      <input type="hidden" name="uid" id="uid" value="<%= uid %>" />
+      <h3>&nbsp;&nbsp;&nbsp;&nbsp;Title</h3>
+      <input type="text" name="title" id="title" style="font-weight: 600;" />
+      <h3>&nbsp;&nbsp;&nbsp;&nbsp;Content</h3>
+      <textarea name="content" id="content" cols="30" rows="10"></textarea>
+      <h3>&nbsp;&nbsp;&nbsp;&nbsp;Place</h3>
+      <input type="text" name="place" id="place" />
+    </form>
   </div>
   <div class="files">
-    <input type="file" name="attach" id="attach" required />
+    <input type="file" name="attach" id="attach" accept="image/*" required />
+    <label for="attach" class="uploadBtn"> upload</label>
     <input id="submit" type="button" value="SUBMIT" onclick="UploadFile();" />
   </div>
 
-  <div class="posts">
-    
-  </div>
+  <div class="posts"></div>
 </div>
 <script>
   function UploadFile() {
@@ -42,4 +41,16 @@
     };
     reader.readAsDataURL(file);
   }
+
+  // $(document).ready(() => {
+  //   const icon = document.querySelector(".uploadIcon");
+
+  //   $(".uploadBtn")
+  //     .mousemove(() => {
+  //       if (!icon.classList.contains("active")) icon.classList.add("active");
+  //     })
+  //     .mouseleave(() => {
+  //       icon.classList.remove("active");
+  //     });
+  // });
 </script>
