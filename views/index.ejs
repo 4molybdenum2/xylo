@@ -68,7 +68,9 @@
           <div class="feature-content">
             <div class="image" style="background: url('<%= element.fileurl %>') no-repeat center;"></div>
             <h2 class="feature-content-title"><%= element.title %></h2>
-            <p class="feature-content-description"><%= element.content %></p>
+            <p class="feature-content-description">
+              <%= trimmedContent[index] %>...
+            </p>
             <a href="stories/<%= index %>" class="feature-content-link black-button">Read More</a>
           </div>
         </div>
@@ -166,5 +168,7 @@
   })
     .setTween(action)
     .addTo(controller);
+
+    
 </script>
 </body>

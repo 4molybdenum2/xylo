@@ -15,6 +15,21 @@ router.get("/", (req, res) => {
           });
         }
 
+        var trimmedContent=[];
+        posts.forEach(element =>{
+          if(element.content.length > 20){
+            //trim the string to the maximum length
+            var trimmedString = element.content.substr(0, 60);
+            //re-trim if we are in the middle of a word and 
+            trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
+            trimmedContent.push(trimmedString);
+          }
+          else{
+            trimmedContent.push(element.content);
+          }
+        });
+        console.log(trimmedContent);
+        
         posts.forEach(element => {
           fx = element.fileurl;
           fileurl2 =
@@ -22,8 +37,7 @@ router.get("/", (req, res) => {
             fx.slice(fx.search("d/") + 2, fx.search("/view"));
           element.fileurl = fileurl2;
         });
-
-        res.render("index", { loading: false, postList: posts });
+        res.render("index", { loading: false, postList: posts , trimmedContent: trimmedContent });
       }
     });
   });
