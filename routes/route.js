@@ -28,7 +28,6 @@ router.get("/", (req, res) => {
             trimmedContent.push(element.content);
           }
         });
-        console.log(trimmedContent);
         
         posts.forEach(element => {
           fx = element.fileurl;
