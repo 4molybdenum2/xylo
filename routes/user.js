@@ -72,11 +72,12 @@ router.post("/register", (req, res) => {
   if (pass != pass2) e.push("Passwords do not match");
   if (pass.length < 6) e.push("Weak Password");
 
-  connection.query("select * from users where email=?", [mail], (er, row) => {
+  // 20s timeout
+  connection.query({sql:"select * from users where email=?", timeout: 20000}, [mail], (er, row) => {
     if (er)
       res
         .status(500)
-        .render("errorPage", { error: "Server Error\n" + er, errorCode: 500 });
+        .render("errorPage", { error: "Server Error\n" + er.sqlMessage, errorCode: 500 });
     if (row.length) res.redirect(`/login?mail=${mail}`);
     if (e.length) {
       var eList = "";
@@ -93,7 +94,7 @@ router.post("/register", (req, res) => {
         if (e) throw e;
         var query = "insert into users (name, email, password_hash) values ?";
         const val = [[name, mail, hash]];
-        connection.query(query, [val], err => {
+        connection.query({sql: query, timeout: 20000}, [val], err => {
           if (err)
             res.status(500).render("errorPage", { error: err, errorCode: 500 });
           else res.redirect(`/login?mail=${mail}`);
@@ -114,7 +115,7 @@ router.post("/login", (req, res) => {
       msgBody: "Please fill-in all the details."
     });
   else {
-    connection.query("select * from users where email=?", [mail], (e, row) => {
+    connection.query({sql: "select * from users where email=?", timeout: 20000}, [mail], (e, row) => {
       if (e) throw e;
       if (row.length) {
         const user = row[0];
