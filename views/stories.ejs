@@ -1,4 +1,3 @@
-<!--goto http://www.cookiesound.com/ for inspiration-->
 <link rel="stylesheet" href="/css/stories.css" />
 <div id="stories" class="stories">
   <div
@@ -14,14 +13,16 @@
   </div>
 
   <div class="content">
-    <span id="date"><%= obj.print[0].date %></span>&nbsp;
+    <span id="date"><%= obj.print[0].post_date.toDateString() %></span>&nbsp;
     <span>✦</span>
     <span id="place"><%= obj.print[0].place %></span>
     <h1 id="title"><%= obj.print[0].title %></h1>
     <p id="story">
       <%= obj.print[0].content %>
     </p>
-    <br />
+    <br>
+    <p>- <span style="font-style: italic; color:#6dd1f2"><%= obj.print[0].author %></span></p>
+    <br>
     <p>
       _______________________________________________________________________________________
     </p>
@@ -31,9 +32,9 @@
     <% if(comment.length > 0) { for(let i = 0; i < comment.length; i++) { var
     element = comment[i]; %>
     <br>
-    <label><%= element.person_name %></label>
-    <br />
-    <label><%= element.content %></label>
+    <label style="color: red;"><%= element.person_name %>:</label>
+    <br><br>
+    &nbsp;<label><%= element.content %></label>
     <% }}else{ %> <br>No comments yet... <% } %>
     <br />
 

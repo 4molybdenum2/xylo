@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
 
+.container{
+    width: 100vw;
+}
+
 #stories{
     overflow-x: hidden;
 }
@@ -97,4 +101,8 @@
     outline: none;
     height: 40px;
     cursor: pointer;
-  }
+}
+
+#date , #place{
+    color: #6dd1f2;
+}
