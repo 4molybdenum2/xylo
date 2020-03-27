@@ -5,8 +5,12 @@ const connection = require("../db/db");
 router.get("/", (req, res) => {
   res.render("index", { loading: true, postList: [] }, (e, html) => {
     var sql = "select * from posts";
-    connection.query(sql, (e, result) => {
-      if (e) throw e;
+    connection.query({ sql: sql, timeout: 30000 }, (e, result) => {
+      if (e)
+        res.status(500).render("errorPage", {
+          error: "Server Error\n" + e.sqlMessage,
+          errorCode: 500
+        });
       else {
         var posts = [];
         if (result.length) {
@@ -15,20 +19,22 @@ router.get("/", (req, res) => {
           });
         }
 
-        var trimmedContent=[];
-        posts.forEach(element =>{
-          if(element.content.length > 20){
+        var trimmedContent = [];
+        posts.forEach(element => {
+          if (element.content.length > 20) {
             //trim the string to the maximum length
             var trimmedString = element.content.substr(0, 60);
-            //re-trim if we are in the middle of a word and 
-            trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
+            //re-trim if we are in the middle of a word and
+            trimmedString = trimmedString.substr(
+              0,
+              Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))
+            );
             trimmedContent.push(trimmedString);
-          }
-          else{
+          } else {
             trimmedContent.push(element.content);
           }
         });
-        
+
         posts.forEach(element => {
           fx = element.fileurl;
           fileurl2 =
@@ -51,7 +57,11 @@ router.get("/stories", (req, res) => {
 router.get("/stories/:id", (req, res) => {
   var sql = "SELECT * FROM posts";
   connection.query(sql, (err, rows) => {
-    if (err) throw err;
+    if (err)
+      res.status(500).render("errorPage", {
+        error: "Server Error\n" + err.sqlMessage,
+        errorCode: 500
+      });
     else {
       var urlid = req.params.id;
       if (urlid > rows.length - 1) res.render("errorPage", { errorCode: 404 });
@@ -67,7 +77,13 @@ router.get("/stories/:id", (req, res) => {
           "SELECT person_name, content FROM comments WHERE post_id = " +
             connection.escape(obj.print[0].id),
           (e, result) => {
-            if (e) throw e;
+            if (e)
+              res
+                .status(500)
+                .render("errorPage", {
+                  error: "Server Error\n" + e.sqlMessage,
+                  errorCode: 500
+                });
             if (result.length) {
               result.forEach(element => {
                 comment.push(element);
