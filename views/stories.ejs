@@ -28,22 +28,25 @@
     </p>
   </div>
   <div class="comments">
-    Comments <br />
+    <span id="Heading">Comments</span> <br />
     <% if(comment.length > 0) { for(let i = 0; i < comment.length; i++) { var
     element = comment[i]; %>
+    <br>
     <label><%= element.person_name %></label>
     <br />
     <label><%= element.content %></label>
-    <% }}else{ %> No comments yet... <% } %>
+    <% }}else{ %> <br>No comments yet... <% } %>
     <br />
 
     <% if(uid != undefined) { %>
     <form method="POST">
+      <br>
       <input type="hidden" name="post_id" value="<%= obj.print[0].id %>"/>
-      <label>Add a comment</label>
+      <br>
+      <label>Add a comment:</label>
       <br />
       <textarea
-        id="content"
+        id="content-comment"
         cols="100"
         rows="2"
         maxlength="140"
@@ -58,7 +61,7 @@
       <br />
       <label id="remaining"></label>
       <br />
-      <input type="submit" value="Add comment" />
+      <input id="submit-button" type="submit" value="Add comment" />
     </form>
     <% } %>
   </div>

@@ -36,7 +36,9 @@ router.get("/", (req, res) => {
             fx.slice(fx.search("d/") + 2, fx.search("/view"));
           element.fileurl = fileurl2;
         });
-        res.render("index", { loading: false, postList: posts , trimmedContent: trimmedContent });
+        // console.log(posts.slice(-3))
+        
+        res.render("index", { loading: false, postList: posts.slice(-3) , trimmedContent: trimmedContent.slice(-3) });
       }
     });
   });

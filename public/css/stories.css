@@ -46,7 +46,7 @@
     box-sizing: border-box;
     line-height: 1.6;
     font-size: 20px;
-    padding: 20vh 20vw;
+    padding: 20vh 20vw 20vh 20vw;
     background-color: #000;
     color: whitesmoke;
 }
@@ -58,7 +58,18 @@
     font-size: 17px;
     background-color: #000;
     color: whitesmoke;
-    padding: 0 20vw 20vh 20vw;
+    padding: 0 20vw 10vh 20vw;
+}
+
+#content-comment{
+    font-family: 'Roboto';
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background-color: whitesmoke;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 4px;
 }
 
 #name{
@@ -67,3 +78,22 @@
 #comment-content{
     width: 30vw;
 }
+
+#Heading{
+    font-size: 36px;
+    color: #6dd1f2;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+}
+
+#submit-button{
+    font-weight: 600;
+    background-color: white;
+    color: black;
+    border-radius: 25px;
+    width: 100px;
+    border: none;
+    outline: none;
+    height: 40px;
+    cursor: pointer;
+  }
