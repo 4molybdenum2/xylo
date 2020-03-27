@@ -6,31 +6,42 @@ const noError = { isError: false, msgTitle: "", msgBody: "" };
 
 router.get("/admin", (req, res) => {
   if (req.session.userId) {
-    if (req.session.userType == 2) res.send("Welcome to the admin page");
+    if (req.session.userType == 2) res.redirect("/dashboard");
     else res.status(403).send("Not allowed");
   } else res.render("login", noError);
 });
 
 router.get("/login", (req, res) => {
   if (req.session.userId)
-    res.redirect("/dashboard");
-  else res.render("login", { email: req.query.mail, isError: false, msgTitle: "", msgBody: "" });
+    req.session.userType == 2
+      ? res.redirect("/dashboard")
+      : res.redirect("/stories");
+  else
+    res.render("login", {
+      email: req.query.mail,
+      isError: false,
+      msgTitle: "",
+      msgBody: ""
+    });
 });
 
 router.get("/register", (req, res) => {
   if (req.session.userId)
-    res.redirect("/dashboard");
+    req.session.userType == 2
+      ? res.redirect("/dashboard")
+      : res.redirect("/stories");
   else res.render("register", noError);
 });
 
 router.get("/dashboard", (req, res) => {
-  if (req.session.userId){
-    res.status(200).render("dashboard", {
-      uid: req.session.userId,
-      name: req.session.userName,
-    });
-  }
-  else res.status(401).redirect("/login");
+  if (req.session.userId) {
+    if (req.session.userType == 2) {
+      res.status(200).render("dashboard", {
+        uid: req.session.userId,
+        name: req.session.userName
+      });
+    }
+  } else res.status(401).redirect("/login");
 });
 
 router.get("/logout", (req, res) => {
@@ -52,7 +63,11 @@ router.post("/register", (req, res) => {
   var e = [];
 
   if (!name || !mail || !pass || !pass2)
-    res.render("register", { isError: true, msgTitle: "Invalid Input", msgBody: "Please fill-in all the details." });
+    res.render("register", {
+      isError: true,
+      msgTitle: "Invalid Input",
+      msgBody: "Please fill-in all the details."
+    });
 
   if (pass != pass2) e.push("Passwords do not match");
   if (pass.length < 6) e.push("Weak Password");
@@ -68,7 +83,11 @@ router.post("/register", (req, res) => {
       e.forEach(error => {
         eList = eList + "\n" + error;
       });
-      res.render("register", { isError: true, msgTitle: "error", msgBody: eList });
+      res.render("register", {
+        isError: true,
+        msgTitle: "error",
+        msgBody: eList
+      });
     } else {
       const passwordHash = bcrypt.hashSync(pass, 10);
       var query = "insert into users (name, email, password_hash) values ?";
@@ -85,11 +104,14 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
   const { mail, pass } = req.body;
 
-  if(!mail || !pass){
-    res.render("login", {isError: true, email: mail, msgTitle: "Invalid Input", msgBody: "Please fill-in all the details."});
-    res.end();
-  }
-  else{
+  if (!mail || !pass)
+    res.render("login", {
+      isError: true,
+      email: mail,
+      msgTitle: "Invalid Input",
+      msgBody: "Please fill-in all the details."
+    });
+  else {
     connection.query("select * from users where email=?", [mail], (e, row) => {
       if (e) throw e;
       if (row.length) {
@@ -98,9 +120,15 @@ router.post("/login", (req, res) => {
           req.session.userId = user.id;
           req.session.userName = user.name;
           req.session.userType = user.user_type;
-          res.redirect("/dashboard");
+          req.session.userType == 2 ? res.redirect("/dashboard") : res.redirect("/stories");
         }
-      } else res.render("login", {email: mail, isError: true, msgTitle: "Invalid Credentials", msgBody: "Incorrect E-Mail ID or Password" });
+      } else
+        res.render("login", {
+          email: mail,
+          isError: true,
+          msgTitle: "Invalid Credentials",
+          msgBody: "Incorrect E-Mail ID or Password"
+        });
     });
   }
 });
