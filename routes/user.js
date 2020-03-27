@@ -6,14 +6,14 @@ const noError = { isError: false, msgTitle: "", msgBody: "" };
 
 router.get("/admin", (req, res) => {
   if (req.session.userId) {
-    if (req.session.userType == 2) res.redirect("/dashboard");
+    if (req.session.userType == 'A') res.redirect("/dashboard");
     else res.status(403).send("Not allowed");
   } else res.render("login", noError);
 });
 
 router.get("/login", (req, res) => {
   if (req.session.userId)
-    req.session.userType == 2
+    req.session.userType == 'A'
       ? res.redirect("/dashboard")
       : res.redirect("/stories");
   else
@@ -27,7 +27,7 @@ router.get("/login", (req, res) => {
 
 router.get("/register", (req, res) => {
   if (req.session.userId)
-    req.session.userType == 2
+    req.session.userType == 'A'
       ? res.redirect("/dashboard")
       : res.redirect("/stories");
   else res.render("register", noError);
@@ -35,8 +35,8 @@ router.get("/register", (req, res) => {
 
 router.get("/dashboard", (req, res) => {
   if (req.session.userId) {
-    if (req.session.userType == 2) {
-      res.status(200).render("dashboard", {
+    if (req.session.userType == 'A') {
+      res.render("dashboard", {
         uid: req.session.userId,
         name: req.session.userName
       });
@@ -120,7 +120,7 @@ router.post("/login", (req, res) => {
           req.session.userId = user.id;
           req.session.userName = user.name;
           req.session.userType = user.user_type;
-          req.session.userType == 2 ? res.redirect("/dashboard") : res.redirect("/stories");
+          req.session.userType == 'A' ? res.redirect("/dashboard") : res.redirect("/stories");
         }
       } else
         res.render("login", {
