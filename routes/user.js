@@ -6,14 +6,14 @@ const noError = { isError: false, msgTitle: "", msgBody: "" };
 
 router.get("/admin", (req, res) => {
   if (req.session.userId) {
-    if (req.session.userType == 'A') res.redirect("/dashboard");
+    if (req.session.userType == "A") res.redirect("/dashboard");
     else res.status(403).send("Not allowed");
   } else res.render("login", noError);
 });
 
 router.get("/login", (req, res) => {
   if (req.session.userId)
-    req.session.userType == 'A'
+    req.session.userType == "A"
       ? res.redirect("/dashboard")
       : res.redirect("/stories");
   else
@@ -27,7 +27,7 @@ router.get("/login", (req, res) => {
 
 router.get("/register", (req, res) => {
   if (req.session.userId)
-    req.session.userType == 'A'
+    req.session.userType == "A"
       ? res.redirect("/dashboard")
       : res.redirect("/stories");
   else res.render("register", noError);
@@ -35,7 +35,7 @@ router.get("/register", (req, res) => {
 
 router.get("/dashboard", (req, res) => {
   if (req.session.userId) {
-    if (req.session.userType == 'A') {
+    if (req.session.userType == "A") {
       res.render("dashboard", {
         uid: req.session.userId,
         name: req.session.userName
@@ -89,13 +89,15 @@ router.post("/register", (req, res) => {
         msgBody: eList
       });
     } else {
-      const passwordHash = bcrypt.hashSync(pass, 10);
-      var query = "insert into users (name, email, password_hash) values ?";
-      const val = [[name, mail, passwordHash]];
-      connection.query(query, [val], err => {
-        if (err)
-          res.status(500).render("errorPage", { error: err, errorCode: 500 });
-        else res.redirect(`/login?mail=${mail}`);
+      bcrypt.hash(pass, 10, (e, hash) => {
+        if (e) throw e;
+        var query = "insert into users (name, email, password_hash) values ?";
+        const val = [[name, mail, hash]];
+        connection.query(query, [val], err => {
+          if (err)
+            res.status(500).render("errorPage", { error: err, errorCode: 500 });
+          else res.redirect(`/login?mail=${mail}`);
+        });
       });
     }
   });
@@ -116,19 +118,32 @@ router.post("/login", (req, res) => {
       if (e) throw e;
       if (row.length) {
         const user = row[0];
-        if (bcrypt.compareSync(pass, user.password_hash)) {
-          req.session.userId = user.id;
-          req.session.userName = user.name;
-          req.session.userType = user.user_type;
-          req.session.userType == 'A' ? res.redirect("/dashboard") : res.redirect("/stories");
-        }
-      } else
+        bcrypt.compare(pass, user.password_hash, (e, result) => {
+          if (e) throw e;
+          if (result) {
+            req.session.userId = user.id;
+            req.session.userName = user.name;
+            req.session.userType = user.user_type;
+            req.session.userType == "A"
+              ? res.redirect("/dashboard")
+              : res.redirect("/stories");
+          } else {
+            res.render("login", {
+              email: mail,
+              isError: true,
+              msgTitle: "Invalid Credentials",
+              msgBody: "Incorrect E-Mail ID or Password"
+            });
+          }
+        });
+      } else {
         res.render("login", {
           email: mail,
           isError: true,
           msgTitle: "Invalid Credentials",
           msgBody: "Incorrect E-Mail ID or Password"
         });
+      }
     });
   }
 });
