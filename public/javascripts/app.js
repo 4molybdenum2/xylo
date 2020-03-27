@@ -18,3 +18,16 @@ function UploadFile() {
   };
   reader.readAsDataURL(file);
 }
+
+function react(element) {
+  let id = element.id;
+  
+  if(id == 'likeIcon')
+    document.getElementById('ld').value = 'like';
+  else if(id == 'dislikeIcon')
+    document.getElementById('ld').value = 'dis';
+
+  let url = window.location.href + '/likeDislike';
+  document.getElementById('likeDislikeForm').action = url;
+  document.getElementById('likeDislikeForm').submit();
+}

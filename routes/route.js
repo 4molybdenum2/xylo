@@ -43,8 +43,12 @@ router.get("/", (req, res) => {
           element.fileurl = fileurl2;
         });
         // console.log(posts.slice(-3))
-        
-        res.render("index", { loading: false, postList: posts.slice(-3) , trimmedContent: trimmedContent.slice(-3) });
+
+        res.render("index", {
+          loading: false,
+          postList: posts.slice(-3),
+          trimmedContent: trimmedContent.slice(-3)
+        });
       }
     });
   });
@@ -56,7 +60,7 @@ router.get("/stories", (req, res) => {
 
 router.get("/stories/:id", (req, res) => {
   var sql = "SELECT * FROM posts";
-  connection.query(sql, (err, rows) => {
+  connection.query({ sql: sql, timeout: 30000 }, (err, rows) => {
     if (err)
       res.status(500).render("errorPage", {
         error: "Server Error\n" + err.sqlMessage,
@@ -74,31 +78,118 @@ router.get("/stories/:id", (req, res) => {
 
         var comment = [];
         connection.query(
-          "SELECT person_name, content FROM comments WHERE post_id = " +
-            connection.escape(obj.print[0].id),
+          {
+            sql:
+              "SELECT person_name, content FROM comments WHERE post_id = " +
+              connection.escape(obj.print[0].id),
+            timeout: 20000
+          },
           (e, result) => {
             if (e)
-              res
-                .status(500)
-                .render("errorPage", {
-                  error: "Server Error\n" + e.sqlMessage,
-                  errorCode: 500
-                });
+              res.status(500).render("errorPage", {
+                error: "Server Error\n" + e.sqlMessage,
+                errorCode: 500
+              });
             if (result.length) {
               result.forEach(element => {
                 comment.push(element);
               });
             }
 
-            res.render("stories", {
-              obj: obj,
-              fileurl: fileurl,
-              uid: req.session.userId,
-              comment: comment
-            });
+            connection.query(
+              {
+                sql:
+                  "select count(*) as count, value from likes where pid = " +
+                  connection.escape(obj.print[0].id) +
+                  " group by value",
+                timeout: 15000
+              },
+              (er, result2) => {
+                if (er)
+                  res.status(500).render("errorPage", {
+                    error: "Server Error\n" + e.sqlMessage,
+                    errorCode: 500
+                  });
+                else {
+                  var like, dis;
+                  if (result2.length == 2) {
+                    like = result2[1].count;
+                    dis = result2[0].count;
+                  } else if (result2.length == 1) {
+                    if (result2[0].value == 1) {
+                      like = result2[0].count;
+                      dis = 0;
+                    } else {
+                      like = 0;
+                      dis = result2[0].count;
+                    }
+                  } else like = dis = 0;
+
+                  res.render("stories", {
+                    obj: obj,
+                    fileurl: fileurl,
+                    uid: req.session.userId,
+                    comment: comment,
+                    likes: like,
+                    dislikes: dis
+                  });
+                }
+              }
+            );
           }
         );
       }
+    }
+  });
+});
+
+router.post("/stories/:id/likeDislike", (req, res) => {
+  let query =
+    "select * from likes where pid = " +
+    connection.escape(req.body.post_id) +
+    " and uid = " +
+    connection.escape(req.session.userId);
+  let like_or_dislike = req.body.ld == "like" ? 2 : 1;
+  connection.query({ sql: query, timeout: 15000 }, (e, result) => {
+    if (e)
+      res
+        .status(500)
+        .render("errorPage", { error: e.sqlMessage, errorCode: 500 });
+    else if (result.length) {
+      connection.query(
+        {
+          sql:
+            "update likes set value = " +
+            connection.escape(like_or_dislike) +
+            " where pid = " +
+            connection.escape(req.body.post_id) +
+            " and uid = " +
+            connection.escape(req.session.userId),
+          timeout: 15000,
+        },
+        e => {
+          if (e)
+            res
+              .status(500)
+              .render("errorPage", { error: e.sqlMessage, errorCode: 500 });
+          else res.redirect("/stories/" + req.params.id);
+        }
+      );
+    } else {
+      let query2 = "insert into likes set ?";
+      let val = {
+        uid: req.session.userId,
+        pid: req.body.post_id,
+        value: like_or_dislike
+      };
+
+      connection.query({ sql: query2, timeout: 15000 }, val, e => {
+        if (e)
+          res
+            .status(500)
+            .render("errorPage", { error: e.sqlMessage, errorCode: 500 });
+        else res.redirect("/stories/" + req.params.id);
+      });
     }
   });
 });
@@ -113,7 +204,7 @@ router.post("/stories/:id", (req, res) => {
     person_name: req.session.userName,
     post_id: parseInt(req.body.post_id)
   };
-  connection.query(query, val, err => {
+  connection.query({ sql: query, timeout: 30000 }, val, err => {
     if (err)
       res
         .status(500)

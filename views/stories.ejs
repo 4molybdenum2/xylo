@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="/css/stories.css" />
+<script src="/javascripts/app.js"></script>
+
 <div id="stories" class="stories">
   <div
     id="bgImage"
@@ -20,38 +22,52 @@
     <p id="story">
       <%= obj.print[0].content %>
     </p>
-    <br>
-    <p>- <span style="font-style: italic; color:#6dd1f2"><%= obj.print[0].author %></span></p>
-    <br>
+    <br />
+    <p>
+      -
+      <span style="font-style: italic; color:#6dd1f2"
+        ><%= obj.print[0].author %></span
+      >
+    </p>
+    <br />
     <p>
       _______________________________________________________________________________________
     </p>
   </div>
-  <% if(uid != undefined) { %>
+
   <div class="reaction">
-    <span><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= obj.print[0].likeCount %></span>
-    <span><i class="fa fa-heart" aria-hidden="true"></i><%= obj.print[0].loveCount %></span>
+    <% if(uid != undefined) { %>
+    <form method="POST" id="likeDislikeForm">
+      <input type="hidden" name="post_id" value="<%= obj.print[0].id %>">
+      <input type="hidden" id="ld" name="ld">
+      <span id="likeIcon" onclick="react(this)" style="cursor: pointer;"><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= likes %></span>
+      <span id="dislikeIcon" onclick="react(this)" style="cursor: pointer;"><i class="fa fa-thumbs-down" aria-hidden="true"></i><%= dislikes %></span>
+    </form>
+    <% } else { %>
+    <span style="color: black;"><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= likes %></span>
+    <span style="color: black;"><i class="fa fa-thumbs-down" aria-hidden="true"></i><%= dislikes %></span>
+    <% } %>
   </div>
-  <% } %>
+
   <div class="comments">
     <span id="Heading">Comments</span> <br />
     <% if(comment.length > 0) { for(let i = 0; i < comment.length; i++) { var
     element = comment[i]; %>
-    <br>
+    <br />
     <label style="color: red;"><%= element.person_name %>:</label>
     <% if(element.person_name == obj.print[0].author) { %>
-      <label>AUTHOR</label>
+    <label>AUTHOR</label>
     <% } %>
-    <br><br>
-    &nbsp;<label><%= element.content %></label>
-    <% }}else{ %> <br>No comments yet... <% } %>
+    <br /><br />
+    &nbsp;<label><%= element.content %></label> <% }}else{ %> <br />No comments
+    yet... <% } %>
     <br />
 
     <% if(uid != undefined) { %>
     <form method="POST">
-      <br>
-      <input type="hidden" name="post_id" value="<%= obj.print[0].id %>"/>
-      <br>
+      <br />
+      <input type="hidden" name="post_id" value="<%= obj.print[0].id %>" />
+      <br />
       <label>Add a comment:</label>
       <br />
       <textarea
