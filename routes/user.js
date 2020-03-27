@@ -36,10 +36,41 @@ router.get("/register", (req, res) => {
 router.get("/dashboard", (req, res) => {
   if (req.session.userId) {
     if (req.session.userType == "A") {
-      res.render("dashboard", {
-        uid: req.session.userId,
-        name: req.session.userName
-      });
+      res.render(
+        "dashboard",
+        {
+          uid: req.session.userId,
+          name: req.session.userName,
+          loading: true,
+          posts: []
+        },
+        (e, html) => {
+          let query = "select * from posts where uid = ?";
+          let postList = [];
+          connection.query({ sql: query, timeout: 30000 }, [parseInt(req.session.userId)], (e, result) => {
+            if (e)
+              res.status(500).render("errorPage", {
+                error: "Server Error\n" + e.sqlMessage,
+                errorCode: 500
+              });
+            if(result.length){
+              result.forEach(element => {
+                postList.push(element);
+              });
+
+              postList.forEach(element => {
+                fx = element.fileurl;
+                fileurl2 =
+                  "https://drive.google.com/uc?id=" +
+                  fx.slice(fx.search("d/") + 2, fx.search("/view"));
+                element.fileurl = fileurl2;
+              });
+            }
+
+            res.render("dashboard", {uid: req.session.userId, name: req.session.userName, loading: false, posts: postList});
+          });
+        }
+      );
     }
   } else res.status(401).redirect("/login");
 });
@@ -73,35 +104,44 @@ router.post("/register", (req, res) => {
   if (pass.length < 6) e.push("Weak Password");
 
   // 20s timeout
-  connection.query({sql:"select * from users where email=?", timeout: 20000}, [mail], (er, row) => {
-    if (er)
-      res
-        .status(500)
-        .render("errorPage", { error: "Server Error\n" + er.sqlMessage, errorCode: 500 });
-    if (row.length) res.redirect(`/login?mail=${mail}`);
-    if (e.length) {
-      var eList = "";
-      e.forEach(error => {
-        eList = eList + "\n" + error;
-      });
-      res.render("register", {
-        isError: true,
-        msgTitle: "error",
-        msgBody: eList
-      });
-    } else {
-      bcrypt.hash(pass, 10, (e, hash) => {
-        if (e) throw e;
-        var query = "insert into users (name, email, password_hash) values ?";
-        const val = [[name, mail, hash]];
-        connection.query({sql: query, timeout: 20000}, [val], err => {
-          if (err)
-            res.status(500).render("errorPage", { error: err, errorCode: 500 });
-          else res.redirect(`/login?mail=${mail}`);
+  connection.query(
+    { sql: "select * from users where email=?", timeout: 20000 },
+    [mail],
+    (er, row) => {
+      if (er)
+        res
+          .status(500)
+          .render("errorPage", {
+            error: "Server Error\n" + er.sqlMessage,
+            errorCode: 500
+          });
+      if (row.length) res.redirect(`/login?mail=${mail}`);
+      if (e.length) {
+        var eList = "";
+        e.forEach(error => {
+          eList = eList + "\n" + error;
         });
-      });
+        res.render("register", {
+          isError: true,
+          msgTitle: "error",
+          msgBody: eList
+        });
+      } else {
+        bcrypt.hash(pass, 10, (e, hash) => {
+          if (e) throw e;
+          var query = "insert into users (name, email, password_hash) values ?";
+          const val = [[name, mail, hash]];
+          connection.query({ sql: query, timeout: 20000 }, [val], err => {
+            if (err)
+              res
+                .status(500)
+                .render("errorPage", { error: err, errorCode: 500 });
+            else res.redirect(`/login?mail=${mail}`);
+          });
+        });
+      }
     }
-  });
+  );
 });
 
 router.post("/login", (req, res) => {
@@ -115,37 +155,41 @@ router.post("/login", (req, res) => {
       msgBody: "Please fill-in all the details."
     });
   else {
-    connection.query({sql: "select * from users where email=?", timeout: 20000}, [mail], (e, row) => {
-      if (e) throw e;
-      if (row.length) {
-        const user = row[0];
-        bcrypt.compare(pass, user.password_hash, (e, result) => {
-          if (e) throw e;
-          if (result) {
-            req.session.userId = user.id;
-            req.session.userName = user.name;
-            req.session.userType = user.user_type;
-            req.session.userType == "A"
-              ? res.redirect("/dashboard")
-              : res.redirect("/stories");
-          } else {
-            res.render("login", {
-              email: mail,
-              isError: true,
-              msgTitle: "Invalid Credentials",
-              msgBody: "Incorrect E-Mail ID or Password"
-            });
-          }
-        });
-      } else {
-        res.render("login", {
-          email: mail,
-          isError: true,
-          msgTitle: "Invalid Credentials",
-          msgBody: "Incorrect E-Mail ID or Password"
-        });
+    connection.query(
+      { sql: "select * from users where email=?", timeout: 20000 },
+      [mail],
+      (e, row) => {
+        if (e) throw e;
+        if (row.length) {
+          const user = row[0];
+          bcrypt.compare(pass, user.password_hash, (e, result) => {
+            if (e) throw e;
+            if (result) {
+              req.session.userId = user.id;
+              req.session.userName = user.name;
+              req.session.userType = user.user_type;
+              req.session.userType == "A"
+                ? res.redirect("/dashboard")
+                : res.redirect("/stories");
+            } else {
+              res.render("login", {
+                email: mail,
+                isError: true,
+                msgTitle: "Invalid Credentials",
+                msgBody: "Incorrect E-Mail ID or Password"
+              });
+            }
+          });
+        } else {
+          res.render("login", {
+            email: mail,
+            isError: true,
+            msgTitle: "Invalid Credentials",
+            msgBody: "Incorrect E-Mail ID or Password"
+          });
+        }
       }
-    });
+    );
   }
 });
 

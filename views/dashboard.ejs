@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="css/dashboard.css" />
+<head>
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/styles.css">
+</head>
 
 <div class="main">
   <nav class="navbar">
@@ -30,5 +33,21 @@
     <input id="submit" type="button" value="SUBMIT" onclick="UploadFile();" />
   </div>
 
-  <div class="posts"></div>
+  <div class="myposts">
+    <% if(loading) { %>
+      <div class="spinner" style="position: absolute; left: 50%;"></div>
+    <% } else {
+      if(posts.length > 0){
+        posts.forEach((element) => { %>
+          <!-- TODO: Styling -->
+          <span class="title"><%= element.title %></span>
+          <span class="place"><%= element.place %></span>
+          <span class="date"><%= element.post_date %></span>
+          <span class="author"><%= element.author %></span>
+          <p class="content"><%= element.content %></p>
+          <img src="<%= element.fileurl %>" />
+    <% });} else { %>
+      <span>No posts yet...</span>
+    <% }} %> 
+  </div>
 </div>
