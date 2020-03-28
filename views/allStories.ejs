@@ -1,0 +1,26 @@
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<div class="stories-wrapper" style="width: 100vw; height: 100vh; overflow-y: scroll;">
+    <div id="mystories" class="heading">
+      <h2>Stories</h2>
+    </div>
+    <div id="stories" class="stories">
+      <% postList.forEach((element, index) => { %>
+      <div id="pinnedelement<%= index %>" class="flex-container">
+        <div class="feature-content">
+          <div class="image" style="background: url('<%= element.fileurl %>') no-repeat center;"></div>
+          <h2 class="feature-content-title"><%= element.title %></h2>
+          <span class="location"><%= element.place %></span>
+          <span class="author"><%= element.author %></span>
+          <span class="date"><%= element.post_date %></span>
+          <p class="feature-content-description">
+            <%= element.content %>
+          </p>
+          <a href="stories/<%= index %>" class="feature-content-link black-button">Read More</a>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
