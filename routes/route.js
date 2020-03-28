@@ -35,6 +35,22 @@ router.get("/", (req, res) => {
           }
         });
 
+        var trimmedHeading = [];
+        posts.forEach(element => {
+          if (element.title.length > 20) {
+            //trim the string to the maximum length
+            var trimmedStringHead = element.title.substr(0, 40);
+            //re-trim if we are in the middle of a word and
+            trimmedStringHead = trimmedStringHead.substr(
+              0,
+              Math.min(trimmedStringHead.length, trimmedStringHead.lastIndexOf(" "))
+            );
+            trimmedHeading.push(trimmedStringHead);
+          } else {
+            trimmedHeading.push(element.title);
+          }
+        });
+
         posts.forEach(element => {
           fx = element.fileurl;
           fileurl2 =
@@ -46,7 +62,8 @@ router.get("/", (req, res) => {
         res.render("index", {
           loading: false,
           postList: posts,
-          trimmedContent: trimmedContent
+          trimmedContent: trimmedContent,
+          trimmedHeading: trimmedHeading
         });
       }
     });
@@ -92,11 +109,28 @@ router.get("/stories", (req, res) => {
           trimmedContent.push(element.content);
         }
       });
+
+      var trimmedHeading = [];
+        posts.forEach(element => {
+          if (element.title.length > 10) {
+            //trim the string to the maximum length
+            var trimmedStringHead = element.title.substr(0, 10);
+            //re-trim if we are in the middle of a word and
+            trimmedStringHead = trimmedStringHead.substr(
+              0,
+              Math.min(trimmedStringHead.length, trimmedStringHead.lastIndexOf(" "))
+            );
+            trimmedHeading.push(trimmedStringHead);
+          } else {
+            trimmedHeading.push(element.title);
+          }
+        });
       
       res.render("allStories", {
         uid: req.session.userId,
         postList: posts,
-        trimmedContent: trimmedContent
+        trimmedContent: trimmedContent,
+        trimmedHeading: trimmedHeading
       });
     }
   });
