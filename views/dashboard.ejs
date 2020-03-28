@@ -20,7 +20,7 @@
     </form>
     <form
       id="uploadForm"
-      action="https://script.google.com/macros/s/AKfycbwzMLIjY3aFRsgEjaGKhmJt-MyhzgY6ouDMfbBh2EHCCYm6SbA/exec"
+      action="https://script.google.com/macros/s/AKfycbzj8DKOem_jqQeU7hyxhN2-ZURZ1jnYto7C7GW3LV0/dev"
       method="POST"
     >
       <input type="hidden" name="fileContent" id="fileContent" />
@@ -44,7 +44,7 @@
         posts.forEach((element) => { %>
           <strong><span class="title"><%= element.title %></span></strong><br>
           <strong><span class="place"><%= element.place %></span>
-          <span class="date"><%= element.post_date.toDateString() %></span></strong><br>
+          <span class="date"><%= element.post_date %></span></strong><br>
           <p class="content"><%= element.content %></p>
           <img src="<%= element.fileurl %>" />
     <% });} else { %>
