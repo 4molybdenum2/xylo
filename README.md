@@ -11,6 +11,10 @@
 * EJS has been used as a templating engine and GSAP for animations.
 * Google Scripts are being used to store the file and the file is uploaded to google drive.
 
+### SCREENSHOTS
+
+https://drive.google.com/drive/folders/1pzuQcuFbEttk4w5iCR3Smgaa8bGyfO_v?usp=sharing
+
 ## HOSTED WEBSITE LINK
 
 Follow link to view the site.
