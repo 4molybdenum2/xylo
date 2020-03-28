@@ -103,7 +103,7 @@ router.get("/stories", (req, res) => {
 });
 
 router.get("/stories/:id", (req, res) => {
-  var sql = 'SELECT * FROM posts LIMIT 1 OFFSET '+connection.escape(parseInt(req.params.id));
+  var sql = 'SELECT *, count(*) as cnt FROM posts LIMIT 1 OFFSET '+connection.escape(parseInt(req.params.id));
   connection.query({ sql: sql, timeout: 30000}, (err, rows) => {
     if (err)
       res.status(500).render("errorPage", {
@@ -119,6 +119,7 @@ router.get("/stories/:id", (req, res) => {
           "https://drive.google.com/uc?id=" +
           fx.slice(fx.search("d/") + 2, fx.search("/view"));
 
+        const postLength = rows[0].cnt;
         var comment = [];
         connection.query(
           {
@@ -175,7 +176,8 @@ router.get("/stories/:id", (req, res) => {
                     comment: comment,
                     likes: like,
                     dislikes: dis,
-                    curId: req.params.id
+                    curId: req.params.id,
+                    maxL: postLength
                   });
                 }
               }
