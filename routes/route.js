@@ -103,7 +103,7 @@ router.get("/stories", (req, res) => {
 });
 
 router.get("/stories/:id", (req, res) => {
-  var sql = 'SELECT *, count(*) as cnt FROM posts LIMIT 1 OFFSET '+connection.escape(parseInt(req.params.id));
+  var sql = 'SELECT * FROM posts LIMIT 1 OFFSET '+connection.escape(parseInt(req.params.id));
   connection.query({ sql: sql, timeout: 30000}, (err, rows) => {
     if (err)
       res.status(500).render("errorPage", {
@@ -119,7 +119,6 @@ router.get("/stories/:id", (req, res) => {
           "https://drive.google.com/uc?id=" +
           fx.slice(fx.search("d/") + 2, fx.search("/view"));
 
-        const postLength = rows[0].cnt;
         var comment = [];
         connection.query(
           {
@@ -169,15 +168,24 @@ router.get("/stories/:id", (req, res) => {
                     }
                   } else like = dis = 0;
 
-                  res.render("stories", {
-                    obj: obj,
-                    fileurl: fileurl,
-                    uid: req.session.userId,
-                    comment: comment,
-                    likes: like,
-                    dislikes: dis,
-                    curId: req.params.id,
-                    maxL: postLength
+                  connection.query({sql: "select count(*) as cnt from posts", timeout: 20000}, (ex, rescount) => {
+                    if(ex)
+                      res.status(500).render("errorPage", {
+                        error: "Server Error\n" + ex.sqlMessage,
+                        errorCode: 500
+                      });
+                    else{
+                      res.render("stories", {
+                        obj: obj,
+                        fileurl: fileurl,
+                        uid: req.session.userId,
+                        comment: comment,
+                        likes: like,
+                        dislikes: dis,
+                        curId: req.params.id,
+                        maxL: rows[0].cnt
+                      });
+                    }  
                   });
                 }
               }
