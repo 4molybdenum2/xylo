@@ -5,7 +5,7 @@
 </head>
 
 <%- include('partials/navbar') %>
-<div class="stories-wrapper" style="width: 100vw; overflow-y: scroll;">
+<div class="stories-wrapper" style="width: 100vw; min-height: 100vh; overflow-y: scroll;">
     <div id="mystories" class="heading">
       <h2>Stories</h2>
     </div>
@@ -18,7 +18,7 @@
           <p class="feature-content-description">
             <%= trimmedContent[index] %>...
           </p>
-          <a href="../../stories/<%= postList.length-index-1 %>" class="feature-content-link black-button">Read More</a>
+          <a href="../../stories/<%= index %>" class="feature-content-link black-button">Read More</a>
         </div>
       </div>
       <% }); %>
