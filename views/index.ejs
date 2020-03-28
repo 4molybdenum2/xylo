@@ -51,11 +51,11 @@
         <div id="pinnedelement<%= index %>" class="flex-container">
           <div class="feature-content">
             <div class="image" style="background: url('<%= element.fileurl %>') no-repeat center;"></div>
-            <h2 class="feature-content-title"><%= element.title %></h2>
+            <h2 class="feature-content-title"><%= trimmedHeading[index] %>...</h2>
             <p class="feature-content-description">
               <%= trimmedContent[index] %>...
             </p>
-            <a href="stories/<%= index %>" class="feature-content-link black-button">Read More</a>
+            <a href="stories/<%= postList.length-index-1 %>" class="feature-content-link black-button">Read More</a>
           </div>
         </div>
         <% });} %>
@@ -63,14 +63,15 @@
     </div>
     
 <div class="icon-bar">
-  <a id="socialmedia" href="https://www.facebook.com/pranshusaxena18" class="facebook"
+  <a id="socialmedia" href="#" class="facebook"
     ><i class="fa fa-facebook"></i
   ></a>
   <a id="socialmedia" href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+  <a id="socialmedia" href="#" class="google"><i class="fa fa-google"></i></a>
   <a id="socialmedia" href="http://www.linkedin.com/in/pranshusaxena18" class="linkedin"
     ><i class="fa fa-linkedin"></i
   ></a>
-  <a id="socialmedia" href="https://www.youtube.com/channel/UCp8HoZRrnO81slEGo778aFg" class="youtube"><i class="fa fa-youtube"></i></a>
+  <a id="socialmedia" href="#" class="youtube"><i class="fa fa-youtube"></i></a>
 </div>
 
 <div class="footer">

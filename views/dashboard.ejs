@@ -1,6 +1,6 @@
 <head>
   <link rel="stylesheet" href="../../css/dashboard.css" />
-  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/styles.css" />
 </head>
 
 <div class="main">
@@ -25,7 +25,7 @@
     >
       <input type="hidden" name="fileContent" id="fileContent" />
       <input type="hidden" name="filename" id="filename" />
-      <input type="hidden" name="fileLocation" id="fileLocation">
+      <input type="hidden" name="fileLocation" id="fileLocation" />
       <input type="hidden" name="uid" id="uid" value="<%= uid %>" />
     </form>
   </div>
@@ -48,7 +48,7 @@
           <p class="content"><%= element.content %></p>
           <img src="<%= element.fileurl %>" />
     <% });} else { %>
-      <span>No posts yet...</span>
-    <% }} %> 
+    <span>No posts yet...</span>
+    <% }} %>
   </div>
 </div>
