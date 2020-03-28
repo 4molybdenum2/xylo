@@ -64,8 +64,8 @@ router.get("/dashboard", (req, res) => {
                 connection.query(
                   {
                     sql:
-                      "update posts set fileurl=" +
-                      connection.escape(req.params.fileurl) +
+                      "update posts set fileurl = " +
+                      connection.escape(req.query.fileurl) +
                       " where id = " +
                       connection.escape(req.session.postId),
                     timeout: 30000
@@ -130,11 +130,12 @@ router.post("/uploadPost", (req, res) => {
         req.body.place,
         req.body.content,
         req.session.userId,
+        req.session.userName,
         "test"
       ]
     ];
     connection.query(
-      "INSERT INTO posts (title, post_date, place, content, uid, fileurl) values ?",
+      "INSERT INTO posts (title, post_date, place, content, uid, author, fileurl) values ?",
       [val],
       (e, dbResult) => {
         if (e)
