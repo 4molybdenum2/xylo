@@ -1,7 +1,7 @@
 <head>
   <link rel="stylesheet" href="../../css/stories.css" />
-  <link rel="stylesheet" href="../../css/menu.css">
-  <link rel="stylesheet" href="../../css/navbarstories.css">
+  <link rel="stylesheet" href="../../css/menu.css" />
+  <link rel="stylesheet" href="../../css/navbarstories.css" />
   <script src="../../javascripts/app.js"></script>
 </head>
 
@@ -43,14 +43,23 @@
   <div class="reaction">
     <% if(uid != undefined) { %>
     <form method="POST" id="likeDislikeForm">
-      <input type="hidden" name="post_id" value="<%= obj.print[0].id %>">
-      <input type="hidden" id="ld" name="ld">
-      <span id="likeIcon" onclick="react(this)" style="cursor: pointer;"><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= likes %></span>
-      <span id="dislikeIcon" onclick="react(this)" style="cursor: pointer;"><i class="fa fa-thumbs-down" aria-hidden="true"></i><%= dislikes %></span>
+      <input type="hidden" name="post_id" value="<%= obj.print[0].id %>" />
+      <input type="hidden" id="ld" name="ld" />
+      <span id="likeIcon" onclick="react(this)" style="cursor: pointer;"
+        ><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= likes %></span
+      >
+      <span id="dislikeIcon" onclick="react(this)" style="cursor: pointer;"
+        ><i class="fa fa-thumbs-down" aria-hidden="true"></i><%= dislikes
+        %></span
+      >
     </form>
     <% } else { %>
-    <span id="likes" ><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= likes %></span>&nbsp;
-    <span id="dislikes"><i class="fa fa-thumbs-down" aria-hidden="true"></i><%= dislikes %></span>
+    <span id="likes"
+      ><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= likes %></span
+    >&emsp;
+    <span id="dislikes"
+      ><i class="fa fa-thumbs-down" aria-hidden="true"></i><%= dislikes %></span
+    >
     <% } %>
   </div>
 
@@ -59,13 +68,14 @@
     <% if(comment.length > 0) { for(let i = 0; i < comment.length; i++) { var
     element = comment[i]; %>
     <br />
-    <label style="color: red;"><%= element.person_name %>:</label>
-    <% if(element.person_name == obj.print[0].author) { %>
-    <label>AUTHOR</label>
-    <% } %>
-    <br /><br />
-    &nbsp;<label><%= element.content %></label> <% }}else{ %> <br />No comments
-    yet... <% } %>
+    <p style="line-height: 25px;">
+      <label style="color: red;"><%= element.person_name %>:</label>
+      <% if(element.person_name == obj.print[0].author) { %>
+      <label style="color: #6dd1f2;">AUTHOR</label>
+      <br />
+      <% } %> &nbsp;<label><%= element.content %></label>
+    </p>
+    <% }}else{ %> <br />No comments yet... <% } %>
     <br />
 
     <% if(uid != undefined) { %>
@@ -93,11 +103,22 @@
       <br />
       <input id="submit-button" type="submit" value="Add comment" />
     </form>
-    <% } %>
-
-    <div class="nextStory" onclick="next('<%= curId %>', 1)" style="right: 0;"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-    <% if(curId != 0) { %>
-    <div class="prevStory" onclick="next('<%= curId %>', -1)" style="left: 0;"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+    <% } %> <% if(curId < (maxL - 1)) { %>
+    <div
+      class="nextStory"
+      onclick="next('<%= curId %>', 1)"
+      style="right: 5px;"
+    >
+      <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </div>
+    <% } %> <% if(curId != 0) { %>
+    <div
+      class="prevStory"
+      onclick="next('<%= curId %>', -1)"
+      style="left: 5px;"
+    >
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </div>
     <% } %>
   </div>
 </div>
@@ -107,10 +128,11 @@
 <% } %>
 
 <script>
-  function next(num, pos){
+  function next(num, pos) {
     let url = window.location.href;
-    let loc = url.indexOf('stories');
+    let loc = url.indexOf("stories");
     let addValue = pos == 1 ? 1 : -1;
-    window.location.href = url.substring(0, loc+7) + `/${parseInt(num)+addValue}`;
+    window.location.href =
+      url.substring(0, loc + 7) + `/${parseInt(num) + addValue}`;
   }
 </script>
