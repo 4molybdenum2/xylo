@@ -7,7 +7,7 @@ window.addEventListener("load", () => {
   }, 500);
 });
 
-async function UploadFile(){
+function UploadFile(){
   var reader = new FileReader();
   var file = document.getElementById("attach").files[0];
   reader.onload = function() {
