@@ -89,5 +89,20 @@
       <input id="submit-button" type="submit" value="Add comment" />
     </form>
     <% } %>
+
+    <div class="nextStory" onclick="next('<%= curId %>', 1)" style="right: 0;"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+    <% if(curId != 0) { %>
+    <div class="prevStory" onclick="next('<%= curId %>', -1)" style="left: 0;"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+    <% } %>
   </div>
 </div>
+
+
+<script>
+  function next(num, pos){
+    let url = window.location.href;
+    let loc = url.indexOf('stories');
+    let addValue = pos == 1 ? 1 : -1;
+    window.location.href = url.substring(0, loc+7) + `/${parseInt(num)+addValue}`;
+  }
+</script>

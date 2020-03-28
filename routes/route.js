@@ -85,18 +85,17 @@ router.get("/stories", (req, res) => {
 });
 
 router.get("/stories/:id", (req, res) => {
-  var sql = "SELECT * FROM posts";
-  connection.query({ sql: sql, timeout: 30000 }, (err, rows) => {
+  var sql = 'SELECT * FROM posts LIMIT 1 OFFSET '+connection.escape(parseInt(req.params.id));
+  connection.query({ sql: sql, timeout: 30000}, (err, rows) => {
     if (err)
       res.status(500).render("errorPage", {
         error: "Server Error\n" + err.sqlMessage,
         errorCode: 500
       });
     else {
-      var urlid = req.params.id;
-      if (urlid > rows.length - 1) res.render("errorPage", { errorCode: 404 });
+      if (!rows.length) res.render("errorPage", { errorCode: 404 });
       else {
-        obj = { print: [rows[urlid]] };
+        obj = { print: [rows[0]] };
         fx = obj.print[0].fileurl;
         fileurl =
           "https://drive.google.com/uc?id=" +
@@ -157,7 +156,8 @@ router.get("/stories/:id", (req, res) => {
                     uid: req.session.userId,
                     comment: comment,
                     likes: like,
-                    dislikes: dis
+                    dislikes: dis,
+                    curId: req.params.id
                   });
                 }
               }

@@ -106,3 +106,11 @@
 #date , #place{
     color: #6dd1f2;
 }
+
+.nextStory, .prevStory {
+    position: fixed;
+    top: 45vh;
+    cursor: pointer;
+    font-size: 100px;
+    color: white;
+}

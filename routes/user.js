@@ -118,12 +118,16 @@ router.post("/register", (req, res) => {
       if (row.length) res.redirect(`/login?mail=${mail}`);
       if (e.length) {
         var eList = "";
-        e.forEach(error => {
-          eList = eList + "\n" + error;
+        e.forEach((error, i) => {
+          if(i == 0)
+            eList = error;
+          else
+            eList = eList + ", " + error;
         });
+        
         res.render("register", {
           isError: true,
-          msgTitle: "error",
+          msgTitle: "Error",
           msgBody: eList
         });
       } else {
