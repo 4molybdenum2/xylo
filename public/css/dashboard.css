@@ -148,7 +148,7 @@
 }
 
 #title , #place, #date, #author{
-    font-size: 24px;
+    font-size: 18px;
 }
 
 #title{
@@ -160,7 +160,7 @@
 }
 
 #content{
-    font-size: 17px;
+    font-size: 15px;
     padding-bottom: 20px;
 }
 
@@ -168,3 +168,5 @@ img{
     height: 600px;
     width: auto;
 }
+
+/* https://drive.google.com/file/d/1rVamB0Gh9K7TLiuFcIq8VIx2C_juClb2/view?usp=drivesdk */

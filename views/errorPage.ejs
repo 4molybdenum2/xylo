@@ -1,12 +1,17 @@
-<link rel="stylesheet" href="/css/errorPage.css">
+<link rel="stylesheet" href="../../css/errorPage.css">
 <% if (errorCode == 404) { %>
 <div class="error404">
     <h1>Error 404! Not Found</h1>
     <p>Return to <a href="/">Homepage</a></p>
 </div>
-<% } else{ %>
+<% } else if(errorCode >= 500){ %>
 <div class="error404">
     <h1>Internal Server Error</h1>
+    <p><%= error %></p>
+</div>
+<% } else { %>
+<div class="error404">
+    <h1>Error <%= errorCode %></h1>
     <p><%= error %></p>
 </div>
 <% } %>
