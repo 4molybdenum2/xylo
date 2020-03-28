@@ -1,6 +1,11 @@
-<link rel="stylesheet" href="/css/stories.css" />
+<head>
+  <link rel="stylesheet" href="/css/stories.css" />
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/navbarstories.css">
+</head>
 <script src="/javascripts/app.js"></script>
 
+<%- include('partials/navbar') %>
 <div id="stories" class="stories">
   <div
     id="bgImage"
@@ -44,8 +49,8 @@
       <span id="dislikeIcon" onclick="react(this)" style="cursor: pointer;"><i class="fa fa-thumbs-down" aria-hidden="true"></i><%= dislikes %></span>
     </form>
     <% } else { %>
-    <span style="color: black;"><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= likes %></span>
-    <span style="color: black;"><i class="fa fa-thumbs-down" aria-hidden="true"></i><%= dislikes %></span>
+    <span id="likes" ><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= likes %></span>&nbsp;
+    <span id="dislikes"><i class="fa fa-thumbs-down" aria-hidden="true"></i><%= dislikes %></span>
     <% } %>
   </div>
 
@@ -97,6 +102,9 @@
   </div>
 </div>
 
+<% if(uid!=undefined) {%>
+<div class="logout"><a href="/logout">Logout</a></div>
+<% } %>
 
 <script>
   function next(num, pos){

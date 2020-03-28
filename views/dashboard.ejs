@@ -36,15 +36,15 @@
   </div>
 
   <div class="myposts">
+    <h1>My posts</h1>
     <% if(loading) { %>
       <div class="spinner" style="position: absolute; left: 50%;"></div>
     <% } else {
       if(posts.length > 0){
         posts.forEach((element) => { %>
-          <span class="title"><%= element.title %></span>
-          <span class="place"><%= element.place %></span>
-          <span class="date"><%= element.post_date %></span>
-          <span class="author"><%= element.author %></span>
+          <strong><span class="title"><%= element.title %></span></strong><br>
+          <strong><span class="place"><%= element.place %></span>
+          <span class="date"><%= element.post_date.toDateString() %></span></strong><br>
           <p class="content"><%= element.content %></p>
           <img src="<%= element.fileurl %>" />
     <% });} else { %>

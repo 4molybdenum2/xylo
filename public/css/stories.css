@@ -63,7 +63,7 @@
     font-size: 17px;
     background-color: #000;
     color: whitesmoke;
-    padding: 0 20vw 10vh 20vw;
+    padding: 0 20vw 5vh 20vw;
 }
 
 #content-comment{
@@ -112,5 +112,37 @@
     top: 45vh;
     cursor: pointer;
     font-size: 100px;
+    color: white;
+}
+
+#likes , #dislikes, .reaction{
+    background-color: #000;
+    color: whitesmoke;
+}
+
+.reaction{
+    padding: 0 20vw 2vh 20vw;
+}
+
+.logout{
+    background-color: #000;
+    display: flex;
+    justify-content: flex-end;
+    padding: 30px;
+}
+
+.logout > a{
+    text-decoration: none;
+    border: none;
+    outline: none;
+    justify-content: end;
+    color: red;
+    font-family: 'Roboto';
+    font-weight: 600;
+    font-size: 24px;
+    transition: 0.3s ease;
+}
+
+.logout a:hover{
     color: white;
 }

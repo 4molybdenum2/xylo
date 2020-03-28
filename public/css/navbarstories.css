@@ -1,0 +1,11 @@
+#nav > h2{
+   display: none;
+}
+
+.hamburger > div{
+    background-color: white !important;
+}
+
+.menu-wrap{
+    z-index: 100;
+}
