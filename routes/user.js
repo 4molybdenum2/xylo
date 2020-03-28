@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const connection = require("../db/db");
 const noError = { isError: false, msgTitle: "", msgBody: "" };
+var postId = undefined;
 
 router.get("/admin", (req, res) => {
   if (req.session.userId) {
@@ -34,6 +35,7 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/dashboard", (req, res) => {
+  userId = undefined;
   if (req.session.userId) {
     if (req.session.userType == "A") {
       res.render(
@@ -45,55 +47,73 @@ router.get("/dashboard", (req, res) => {
           posts: []
         },
         (e, html) => {
-          let query = "select * from posts where uid = ?";
+          let query =
+            "select * from posts where uid = " +
+            connection.escape(parseInt(req.session.userId));
           let postList = [];
           connection.query(
-            { sql: query, timeout: 30000 },
-            [parseInt(req.session.userId)],
+            { sql: query, timeout: 30000, typeCast: false },
             (e, result) => {
-              if (e)
+              if (e) {
                 res.status(500).render("errorPage", {
                   error: "Server Error\n" + e.sqlMessage,
                   errorCode: 500
                 });
+              }
               if (result.length) {
                 result.forEach(element => {
                   postList.push(element);
                 });
 
-                connection.query(
-                  {
-                    sql:
-                      "update posts set fileurl = " +
-                      connection.escape(req.query.fileurl) +
-                      " where id = " +
-                      connection.escape(req.session.postId),
-                    timeout: 30000
-                  },
-                  e => {
-                    if (e)
-                      res.status(500).render("errorPage", {
-                        error: "Server Error\n" + e.sqlMessage,
-                        errorCode: 500
-                      });
-                  }
-                );
+                if (postId.length) {
+                  connection.query(
+                    {
+                      sql:
+                        "update posts set fileurl = " +
+                        connection.escape(
+                          req.query.fileurl.substring(
+                            1,
+                            req.query.fileurl.length - 2
+                          )
+                        ) +
+                        " where id = " +
+                        connection.escape(postId),
+                      timeout: 30000
+                    },
+                    e => {
+                      if (e)
+                        res.status(500).render("errorPage", {
+                          error: "Server Error\n" + e.sqlMessage,
+                          errorCode: 500
+                        });
+                    }
+                  );
+                }
 
                 postList.forEach(element => {
                   fx = element.fileurl;
-                  fileurl2 =
-                    "https://drive.google.com/uc?id=" +
-                    fx.slice(fx.search("d/") + 2, fx.search("/view"));
-                  element.fileurl = fileurl2;
+                  if (fx != "test") {
+                    fileurl2 =
+                      "https://drive.google.com/uc?id=" +
+                      fx.slice(fx.search("d/") + 2, fx.search("/view"));
+                    element.fileurl = fileurl2;
+                  }
+                });
+
+                res.render("dashboard", {
+                  uid: req.session.userId,
+                  name: req.session.userName,
+                  loading: false,
+                  posts: postList
+                });
+              } else {
+                res.render("dashboard", {
+                  uid: req.session.userId,
+                  name: req.session.userName,
+                  loading: false,
+                  posts: []
                 });
               }
-
-              res.render("dashboard", {
-                uid: req.session.userId,
-                name: req.session.userName,
-                loading: false,
-                posts: postList
-              });
             }
           );
         }
@@ -143,7 +163,7 @@ router.post("/uploadPost", (req, res) => {
             error: "Server Error\n" + e.sqlMessage,
             errorCode: 500
           });
-        else req.session.postId = dbResult.insertId;
+        else postId = dbResult.insertId;
       }
     );
   });
@@ -211,6 +231,7 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+  postId = undefined;
   const { mail, pass } = req.body;
 
   if (!mail || !pass)
@@ -266,6 +287,12 @@ router.post("/login", (req, res) => {
       }
     );
   }
+});
+
+router.post("*", (req, res) => {
+  res
+    .status(400)
+    .render("errorPage", { error: "Invalid request", errorCode: 400 });
 });
 
 module.exports = router;
