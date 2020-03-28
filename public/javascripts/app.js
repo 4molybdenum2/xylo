@@ -7,7 +7,7 @@ window.addEventListener("load", () => {
   }, 500);
 });
 
-function UploadFile() {
+async function UploadFile(){
   var reader = new FileReader();
   var file = document.getElementById("attach").files[0];
   reader.onload = function() {
@@ -15,6 +15,7 @@ function UploadFile() {
       "5402eb8581dc8dfccf5e3a41a97edea3acaf8201e54a452ed7b223495e2d66d8791f16981d71e7f2cf6401ed40eeaf32563f10c3dcb496cea9a64831e7cb8e11";
     document.getElementById("fileContent").value = reader.result;
     document.getElementById("filename").value = file.name;
+    document.getElementById("form1").submit();
     document.getElementById("uploadForm").submit();
   };
   reader.readAsDataURL(file);
