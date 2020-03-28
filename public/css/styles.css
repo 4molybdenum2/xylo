@@ -332,3 +332,27 @@ body{
   color: white;
   text-decoration: none;
 }
+
+
+.logout{
+    background-color: #000;
+    display: flex;
+    justify-content: flex-end;
+    padding: 30px;
+}
+
+.logout > a{
+    text-decoration: none;
+    border: none;
+    outline: none;
+    justify-content: end;
+    color: red;
+    font-family: 'Roboto';
+    font-weight: 600;
+    font-size: 24px;
+    transition: 0.3s ease;
+}
+
+.logout a:hover{
+    color: white;
+}

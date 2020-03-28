@@ -1,6 +1,11 @@
-<link rel="stylesheet" href="/css/stories.css" />
+<head>
+  <link rel="stylesheet" href="/css/stories.css" />
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/navbarstories.css">
+</head>
 <script src="/javascripts/app.js"></script>
 
+<%- include('partials/navbar') %>
 <div id="stories" class="stories">
   <div
     id="bgImage"
@@ -97,7 +102,9 @@
   </div>
 </div>
 
+<% if(uid!=undefined) {%>
 <div class="logout"><a href="/logout">Logout</a></div>
+<% } %>
 
 <script>
   function next(num, pos){

@@ -94,6 +94,7 @@ router.get("/stories", (req, res) => {
       });
       
       res.render("allStories", {
+        uid: req.session.userId,
         postList: posts,
         trimmedContent: trimmedContent
       });
