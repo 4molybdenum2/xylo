@@ -39,7 +39,7 @@ router.get("/", (req, res) => {
         posts.forEach(element => {
           if (element.title.length > 20) {
             //trim the string to the maximum length
-            var trimmedStringHead = element.title.substr(0, 40);
+            var trimmedStringHead = element.title.substr(0, 20);
             //re-trim if we are in the middle of a word and
             trimmedStringHead = trimmedStringHead.substr(
               0,
@@ -112,9 +112,9 @@ router.get("/stories", (req, res) => {
 
       var trimmedHeading = [];
         posts.forEach(element => {
-          if (element.title.length > 10) {
+          if (element.title.length > 20) {
             //trim the string to the maximum length
-            var trimmedStringHead = element.title.substr(0, 10);
+            var trimmedStringHead = element.title.substr(0, 20);
             //re-trim if we are in the middle of a word and
             trimmedStringHead = trimmedStringHead.substr(
               0,
