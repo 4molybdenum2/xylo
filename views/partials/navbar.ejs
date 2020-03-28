@@ -1,7 +1,7 @@
 <nav id="nav">
     <h2 id="xylo">.xylo</h2>
     <div class="menu-wrap">
-      <input type="checkbox" class="toggler" />
+      <input type="checkbox" class="toggler" id="hamburger-icon" />
       <div class="hamburger">
         <div></div>
       </div>
@@ -18,3 +18,14 @@
       </div>
     </div>
   </nav>
+
+  <script>
+    $(document).on( 
+      'keydown', function(event) { 
+        if (event.key == "Escape") { 
+            if($(".toggler").is(":checked")){
+              $(".toggler").prop('checked', false);
+            }
+        } 
+    });
+  </script>

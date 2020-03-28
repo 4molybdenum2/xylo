@@ -4,7 +4,7 @@ const connection = require("../db/db");
 
 router.get("/", (req, res) => {
   res.render("index", { loading: true, postList: [] }, (e, html) => {
-    var sql = "select * from posts";
+    var sql = "select * from posts order by post_date desc limit 3";
     connection.query({ sql: sql, timeout: 30000 }, (e, result) => {
       if (e)
         res.status(500).render("errorPage", {
@@ -42,12 +42,11 @@ router.get("/", (req, res) => {
             fx.slice(fx.search("d/") + 2, fx.search("/view"));
           element.fileurl = fileurl2;
         });
-        // console.log(posts.slice(-3))
 
         res.render("index", {
           loading: false,
-          postList: posts.slice(-3),
-          trimmedContent: trimmedContent.slice(-3)
+          postList: posts,
+          trimmedContent: trimmedContent
         });
       }
     });
@@ -55,7 +54,34 @@ router.get("/", (req, res) => {
 });
 
 router.get("/stories", (req, res) => {
-  res.redirect("/stories/0");
+  let query = "select * from posts";
+  connection.query({sql: query, timeout: 60000}, (e, rows) => {
+    if(e)
+      res.status(500).render("errorPage", {
+        error: "Server Error\n"+e.sqlMessage,
+        errorCode: 500
+      });
+    else{
+      var posts = [];
+      if(rows.length){
+        rows.forEach((element) => {
+          posts.push(element);
+        });
+      }
+
+      posts.forEach(element => {
+        fx = element.fileurl;
+        fileurl2 =
+          "https://drive.google.com/uc?id=" +
+          fx.slice(fx.search("d/") + 2, fx.search("/view"));
+        element.fileurl = fileurl2;
+      });
+      
+      res.render("allStories", {
+        postList: posts
+      });
+    }
+  });
 });
 
 router.get("/stories/:id", (req, res) => {
