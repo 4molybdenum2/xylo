@@ -31,6 +31,6 @@ the site.
 
 ### FOR DEVELOPERS
 
-Entry point in the app is through app.js
-Run **npm start** in console to run the app on localhost:5000
+Entry point in the app is through app.js<br>
+Run **npm start** in console to run the app on localhost:5000<br>
 Run **npm run dev** to run in development mode
