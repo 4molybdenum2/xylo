@@ -26,4 +26,11 @@ https://webkriti2020.herokuapp.com
 
 ## STATUS
 
-Currently under development.
+Hooray! Except a few minor bugs we are working on you can now visit
+the site.
+
+### FOR DEVELOPERS
+
+Entry point in the app is through app.js
+Run **npm start** in console to run the app on localhost:5000
+Run **npm run dev** to run in development mode
