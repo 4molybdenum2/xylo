@@ -29,7 +29,7 @@ https://webkriti2020.herokuapp.com
 Hooray! Except a few minor bugs we are working on you can now visit
 the site.
 
-### FOR DEVELOPERS
+## FOR DEVELOPERS
 
 Entry point in the app is through app.js<br>
 Run **npm start** in console to run the app on localhost:5000<br>
