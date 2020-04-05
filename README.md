@@ -24,6 +24,11 @@ https://youtu.be/_u-RASsQF9k
 Follow link to view the site.
 https://webkriti2020.herokuapp.com
 
+## ADMIN ACCOUNT CREDENTIALS
+
+email: pranshutejas@gmail.com
+password: pranshu
+
 ## STATUS
 
 Hooray! Except a few minor bugs we are working on you can now visit
