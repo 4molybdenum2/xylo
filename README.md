@@ -15,11 +15,27 @@
 
 https://drive.google.com/drive/folders/1pzuQcuFbEttk4w5iCR3Smgaa8bGyfO_v?usp=sharing
 
+### VIDEO LINK (LIVE DEMO)
+
+https://youtu.be/_u-RASsQF9k
+
 ## HOSTED WEBSITE LINK
 
 Follow link to view the site.
 https://webkriti2020.herokuapp.com
 
+## ADMIN ACCOUNT CREDENTIALS
+
+email: pranshutejas@gmail.com
+password: pranshu
+
 ## STATUS
 
-Currently under development.
+Hooray! Except a few minor bugs we are working on you can now visit
+the site.
+
+## FOR DEVELOPERS
+
+Entry point in the app is through app.js<br>
+Run **npm start** in console to run the app on localhost:5000<br>
+Run **npm run dev** to run in development mode
