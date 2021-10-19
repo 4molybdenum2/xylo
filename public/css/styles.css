@@ -1,358 +1,386 @@
-@import url('https://fonts.googleapis.com/css?family=Aclonica|Baloo+Bhai|Lobster+Two|Markazi+Text|Philosopher&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Aclonica|Baloo+Bhai|Lobster+Two|Markazi+Text|Philosopher&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC:700,900&display=swap&subset=chinese-traditional" rel="stylesheet');
-@import url('https://fonts.googleapis.com/css?family=Roboto|Lobster');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    outline: none;
+@import url('https://fonts.googleapis.com/css?family=Roboto|Lobster'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  outline: none;
 }
 
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-    font-size: 17px;
-    color: #000000;
-    width: 100%;
-    overflow-x: hidden;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  font-size: 17px;
+  color: #000000;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-.container{
-    width: 100vw;
+.container {
+  width: 100vw;
 }
-.preloader{
-    position: fixed;
-    top: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 5;
-    font-family: 'Noto Serif TC',serif;
-    font-size: 48px;
-    transition: opacity 0.5s ease;
-}
-
-@media only screen and (max-width: 500px){
-    .preloader{
-        font-size: 24px;
-    }
-}
-.preload-finish{
-    -webkit-transform: translateY(100vh);
-    -ms-transform: translateY(100vh);
-    transform: translateY(100vh);
-    opacity: 0;
-    pointer-events: none;
+.preloader {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 48px;
+  transition: opacity 0.5s ease;
 }
 
-.spinner{
-    border: 4px solid #ffff00; /* Light grey */
-    border-top: 4px solid #000; /* Blue */
-    border-left: 4px solid #000;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1.7s linear infinite;
+@media only screen and (max-width: 500px) {
+  .preloader {
+    font-size: 24px;
+  }
+}
+.preload-finish {
+  -webkit-transform: translateY(100vh);
+  -ms-transform: translateY(100vh);
+  transform: translateY(100vh);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner {
+  border: 4px solid #ffff00; /* Light grey */
+  border-top: 4px solid #000; /* Blue */
+  border-left: 4px solid #000;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1.7s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
   }
-
-
-.landing{
-    background-image: url(../assets/japan.jpg);
-    height: 100vh;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    transition: all 0.7s ease;
-    display: flex;
-    justify-content: center;
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-#nav{
-    z-index: 3;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    padding: 13px 30px 7px 30px;
-    font-family: 'Philosopher', sans-serif;
-    font-size: 25px;
-    color: #000 !important;
-    transition: 0.3s ease-in-out;
-    opacity: 1;
+.landing {
+  background-image: url(../assets/japan.jpg);
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  transition: all 0.7s ease;
+  display: flex;
+  justify-content: center;
 }
 
-#xylo{
-    font-family: 'Lobster';
+#nav {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 30px 7px 30px;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 25px;
+  color: #000 !important;
+  transition: 0.3s ease-in-out;
+  opacity: 1;
 }
 
-.buttons{
-    text-decoration: none;
-    padding: 20px 20px 0px 0px;
-    color: #000;
-    display: inline;
-    overflow: hidden;
-    position: relative;
+#xylo {
+  font-family: 'Lobster';
+}
+
+.buttons {
+  text-decoration: none;
+  padding: 20px 20px 0px 0px;
+  color: #000;
+  display: inline;
+  overflow: hidden;
+  position: relative;
 }
 
 .buttons:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    width: 0;
-    bottom: -1px;
-    background: #000;
-    height: 2px;
-    transition-property: width;
-    transition-duration: 0.5s;
-    transition-timing-function: ease-in;
-  }
-  .buttons:hover:after,
-  .buttons:focus:after,
-  .buttons:active:after {
-    left: 0;
-    width: 74%;
-  }
-
-.landing-text{
-    position: absolute;
-    top: 30vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-family: 'Markazi Text', serif;
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  width: 0;
+  bottom: -1px;
+  background: #000;
+  height: 2px;
+  transition-property: width;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+}
+.buttons:hover:after,
+.buttons:focus:after,
+.buttons:active:after {
+  left: 0;
+  width: 74%;
 }
 
-.landing-text h1{
-    font-size: 48px;
-    color: #991a0e;
-}
-.landing-text p{
-    color: #000;
-    font-size: 25px;
-}
-
-.landing-text .button{
-    font-size: 25px;
-    text-decoration: none;
-    color: #000;
-    border: #000 1px solid;
-    padding: 10px 20px;
-    border-radius: 10px;
-    transition: 0.37s ease-in-out;
-    margin-top: 35px;
+.landing-text {
+  position: absolute;
+  top: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Lobster', cursive;
 }
 
-.landing-text .button:hover{
-    color: #fff;
-    background-color: #000;
+.landing-text h1 {
+  font-size: 48px;
+  color: #991a0e;
+}
+.landing-text p {
+  color: #000;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'Dancing Script', cursive;
+}
+
+.landing-text .button {
+  font-size: 25px;
+  text-decoration: none;
+  color: #000;
+  border: #000 1px solid;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 0.37s ease-in-out;
+  margin-top: 35px;
+}
+
+.landing-text .button:hover {
+  color: #fff;
+  background-color: #000;
 }
 
 /* Fixed/sticky icon bar (vertically aligned 50% from the top of the screen) */
 .icon-bar {
-    position: absolute;
-    top: 40%;
-    right: 1%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    transform: translateY(-50%);
-  }
-  
+  position: absolute;
+  top: 40%;
+  right: 1%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 /* Style the icon bar links */
 .icon-bar a {
-    display: block;
-    text-align: center;
-    padding: 16px;
-    border-radius: 50% !important;
-    transition: all 0.3s ease;
-    color: black;
-    font-size: 20px;
-  }
-  
-  /* Style the social media icons with color, if you want */
-  .icon-bar a:hover {
-    background-color: white;
-  }
-  
-  /* .facebook:hover, .twitter:hover, .google:hover, .linkedin:hover, .youtube:hover {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  border-radius: 50% !important;
+  transition: all 0.3s ease;
+  color: black;
+  font-size: 20px;
+}
+
+/* Style the social media icons with color, if you want */
+.icon-bar a:hover {
+  background-color: white;
+}
+
+/* .facebook:hover, .twitter:hover, .google:hover, .linkedin:hover, .youtube:hover {
     color: white;
   } */
 
-@media only screen and (max-width: 700px){
-    .landing-text h1{
-        font-size: 36px;
+@media only screen and (max-width: 700px) {
+  .landing-text h1 {
+    font-size: 36px;
+  }
+  .landing-text p {
+    display: none;
+  }
 
-    }
-    .landing-text p{ 
-        display: none;
-        
-    }
+  .landing-text .button {
+    margin-top: 10px;
+  }
 
-    .landing-text .button{
-        margin-top: 10px;
-    }
-
-    .feature-content-description{
-        display: none;
-    }
+  .feature-content-description {
+    display: none;
+  }
 }
 
-.introduction{
-    display: block;
-    box-sizing: border-box;
-    line-height: 1.6;
-    font-size: 20px;
-    padding: 20vh 20vw;
-    background-color: #000;
-    color: whitesmoke;
+.introduction {
+  display: block;
+  box-sizing: border-box;
+  line-height: 1.6;
+  font-size: 20px;
+  padding: 20vh 20vw;
+  background-color: #000;
+  color: whitesmoke;
 }
 
-.stories-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    background-color: black;
+.stories-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background-color: black;
 }
 
-.stories{
-    height: fit-content;
-    width: 70vw;
-    box-sizing: border-box;
+.stories {
+  height: fit-content;
+  width: 70vw;
+  box-sizing: border-box;
 }
 
-.heading{
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 25px;
-    margin-bottom: 20px;
-    font-family: 'Philosopher',sans-serif;
-    color: white;
+.heading {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 20px;
+  font-family: 'Philosopher', sans-serif;
+  color: white;
 }
 
-.stories{
-    display: grid;
-    grid-gap: 30px;
-    grid-template-columns: repeat(auto-fill , minmax(300px,1fr));
-    margin: 0 10vh 20px 10vh;
-    min-width: 0;
+.stories {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin: 0 10vh 20px 10vh;
+  min-width: 0;
 }
 
 @media only screen and (max-width: 900px) {
-    .stories{
-        -ms-grid-columns: repeat(auto-fill , minmax(200px,1fr));
-        grid-template-columns:repeat(auto-fill , minmax(200px,1fr));
-        margin: 0 15vh 20px 15vh;
-    }
+  .stories {
+    -ms-grid-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin: 0 15vh 20px 15vh;
+  }
 }
 
 @media only screen and (max-width: 500px) {
-    .stories {
-        -ms-grid-columns: repeat(auto-fill , minmax(200px,1fr));
-        grid-template-columns: repeat(auto-fill , minmax(200px,1fr));
-        margin: 0 15vh 20px 15vh;
-    }
-    .footer{
-        display: none;
-    }
+  .stories {
+    -ms-grid-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin: 0 15vh 20px 15vh;
+  }
+  .footer {
+    display: none;
+  }
 }
 
-.empty-space{
-    background-color: #000;
-    width: 100%;
-    height: 30vh;
+.empty-space {
+  background-color: #000;
+  width: 100%;
+  height: 30vh;
 }
-.black-button{ background: black;}
-.green-text { color: #178A27; }
-.blue-text { color: #1686C1; }
-.gray-text { color: #1686C1; }
-.green-btn { background: #178A27; }
-.green-btn:hover { background: #449D44; }
-.blue-btn { background: #1686C1; }
-.blue-btn:hover { background: #31B0D5; }
-.red-btn { background: #852406; }
-.red-btn:hover { background: #C9302C; }
+.black-button {
+  background: black;
+}
+.green-text {
+  color: #178a27;
+}
+.blue-text {
+  color: #1686c1;
+}
+.gray-text {
+  color: #1686c1;
+}
+.green-btn {
+  background: #178a27;
+}
+.green-btn:hover {
+  background: #449d44;
+}
+.blue-btn {
+  background: #1686c1;
+}
+.blue-btn:hover {
+  background: #31b0d5;
+}
+.red-btn {
+  background: #852406;
+}
+.red-btn:hover {
+  background: #c9302c;
+}
 .feature-content {
-    background: #F2F2F2;
-    padding-bottom: 40px;
-    height: 500px;
+  background: #f2f2f2;
+  padding-bottom: 40px;
+  height: 500px;
 }
 
-.image{
-    height: 250px;
-    width: 100%; 
+.image {
+  height: 250px;
+  width: 100%;
 }
 .feature-content-title {
-    padding: 10px 20px;
-    text-align: left;
-    font-family: 'Philosopher',sans-serif;    
+  padding: 10px 20px;
+  text-align: left;
+  font-family: 'Philosopher', sans-serif;
 }
 .feature-content-description {
-    padding: 0 20px 35px;
-    text-align: left;
-    color: #333333;
-    margin-top: 15px;
-    font-family: 'Markazi Text',sans-serif;
-    font-size: 20px;
+  padding: 0 20px 35px;
+  text-align: left;
+  color: #333333;
+  margin-top: 15px;
+  font-family: 'Markazi Text', sans-serif;
+  font-size: 20px;
 }
 .feature-content-link {
-    display: flex;
-    justify-content: center;
-    margin: 0 50px 0 50px;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 18px;
-    padding: 10px 30px;
-    text-decoration: none;
-    text-transform: capitalize;
-    -webkit-transition: all 0.3s ease;
-            transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  margin: 0 50px 0 50px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 30px;
+  text-decoration: none;
+  text-transform: capitalize;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
-.feature-content-link:hover, .feature-content-link:link, .feature-content-link:visited  {
+.feature-content-link:hover,
+.feature-content-link:link,
+.feature-content-link:visited {
   color: white;
   text-decoration: none;
 }
 
-
-.logout{
-    background-color: #000;
-    display: flex;
-    justify-content: flex-end;
-    padding: 30px;
+.logout {
+  background-color: #000;
+  display: flex;
+  justify-content: flex-end;
+  padding: 30px;
 }
 
-.logout > a{
-    text-decoration: none;
-    border: none;
-    outline: none;
-    justify-content: end;
-    color: red;
-    font-family: 'Roboto';
-    font-weight: 600;
-    font-size: 24px;
-    transition: 0.3s ease;
+.logout > a {
+  text-decoration: none;
+  border: none;
+  outline: none;
+  justify-content: end;
+  color: red;
+  font-family: 'Roboto';
+  font-weight: 600;
+  font-size: 24px;
+  transition: 0.3s ease;
 }
 
-.logout a:hover{
-    color: white;
+.logout a:hover {
+  color: white;
 }
