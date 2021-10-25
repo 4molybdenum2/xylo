@@ -1,68 +1,75 @@
 <head>
-  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/styles.css" />
   <!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script> -->
 </head>
 
-<body id="body" style="overflow: hidden;">
-<!-- <div class="preloader">
+<body id="body" style="overflow: hidden">
+  <!-- <div class="preloader">
   <h1>旅行是艺术</h1>
   <h6>. x y l o</h6>
   <br />
   <div class="spinner"></div>
 </div> -->
 
-<div id="landing" class="landing">
-    <%- include ('partials/navbar') %>
-    <div class="landing-text">
-      <h1>Lifetimes of Travelling and Photography...</h1>
-      <p class="landing-text-anim">
-        For us travelling is the most <strong>inspiring and exciting</strong> form
-        of photography.<br />
-        Every capture is unique, every trip a new experience and this is why
-        <br /><strong>we love what we do.</strong>
-      </p>
-      <a class="button landing-text-anim" href="#stories" id="discover">Discover</a>
-    </div>
-</div>
-</div>
-<section class="introduction">
-  <div>
-    Browse through our first-hand travel articles,
-    supported by beautiful photo material.
-    Through our lens you'll only get to see the reality around us: real life - no staging and no pre-arrangements of any kind.
-    xylo was born out of the frustration of seeing the same old design principles in older blogs and 
-    we seek to indulge you in a more diverse experience of browsing through your favourite travel 
-    destinations. You can post your travel stories in our blogs and us and our viewers will be happy to 
-    go through another beautiful journey.
-  </div>
-</section>
-    <div class="stories-wrapper">
-      <div id="mystories" class="heading">
-        <h2>Latest Stories</h2>
+  <main>
+    <div id="landing" class="landing">
+      <%- include ('partials/navbar') %>
+      <div class="landing-text">
+        <h1>Lifetimes of Travelling and Photography...</h1>
+        <p class="landing-text-anim">
+          For us travelling is the most <strong>inspiring and exciting</strong> form of
+          photography.<br />
+          Every capture is unique, every trip a new experience and this is why
+          <br /><strong>we love what we do.</strong>
+        </p>
+        <a id="anchortab" class="button landing-text-anim" href="#stories" id="discover"
+          >Discover</a
+        >
       </div>
-      <div id="stories" class="stories">
-        <% if(loading) { %>
-        <div class="spinner" style="position: absolute; left: 50%;"></div>
-        <% } else { 
-          postList.forEach((element, index) => {%>
-        <div id="pinnedelement<%= index %>" class="flex-container">
-          <div class="feature-content">
-            <div class="image" style="background: url('<%= element.fileurl %>') no-repeat center;"></div>
-            <h2 class="feature-content-title"><%= trimmedHeading[index] %>...</h2>
-            <p class="feature-content-description">
-              <%= trimmedContent[index] %>...
-            </p>
-            <a href="../../stories/<%= postList.length-index-1 %>" class="feature-content-link black-button">Read More</a>
-          </div>
+    </div>
+  </main>
+  <section class="introduction">
+    <div>
+      Browse through our first-hand travel articles, supported by beautiful photo material. Through
+      our lens you'll only get to see the reality around us: real life - no staging and no
+      pre-arrangements of any kind. xylo was born out of the frustration of seeing the same old
+      design principles in older blogs and we seek to indulge you in a more diverse experience of
+      browsing through your favourite travel destinations. You can post your travel stories in our
+      blogs and us and our viewers will be happy to go through another beautiful journey.
+    </div>
+  </section>
+  <div class="stories-wrapper">
+    <div id="mystories" class="heading">
+      <h2>Latest Stories</h2>
+    </div>
+    <div id="stories" class="stories">
+      <% if(loading) { %>
+      <div class="spinner" style="position: absolute; left: 50%"></div>
+      <% } else { postList.forEach((element, index) => {%>
+      <div id="pinnedelement<%= index %>" class="flex-container">
+        <div class="feature-content">
+          <div
+            class="image"
+            style="background: url('<%= element.fileurl %>') no-repeat center"
+          ></div>
+          <h2 class="feature-content-title"><%= trimmedHeading[index] %>...</h2>
+          <p class="feature-content-description"><%= trimmedContent[index] %>...</p>
+          <a
+            id="anchortab2"
+            href="../../stories/<%= postList.length-index-1 %>"
+            class="feature-content-link black-button"
+            >Read More</a
+          >
         </div>
-        <% });} %>
       </div>
+      <% });} %>
     </div>
-    
-<!-- <div class="icon-bar">
+  </div>
+
+  <!-- <div class="icon-bar">
   <a id="socialmedia" href="#" class="facebook"
     ><i class="fa fa-facebook"></i
   ></a>
@@ -86,60 +93,54 @@
   </ul>
 </div> -->
 
-<script>
-  
-  $(document).ready(() => {
-    gsap.from(".landing-text-anim", {
-    opacity: 0,
-    duration: 1,
-    y: -100,
-    ease: 'power1.inOut',
-    stagger: {amount:0.07},
-    delay: 3,
-  });
-  gsap.from("#socialmedia", {
-    duration: 1,
-    y: 50,
-    delay: 3.2,
-    opacity: 0,
-    ease: 'power1.inOut',
-    stagger: {amount:0.2}
-  });
-  var action = gsap
-    .timeline()
-    .from(".feature-content", {
-      opacity: 0,
-      duration: 1,
-      y: -100,
-      ease: Power1,
-      stagger: {amount:0.4},
-      delay: 0.6
+  <script>
+    $(document).ready(() => {
+      gsap.from('.landing-text-anim', {
+        opacity: 0,
+        duration: 1,
+        y: -100,
+        ease: 'power1.inOut',
+        stagger: { amount: 0.07 },
+        delay: 3,
+      });
+      gsap.from('#socialmedia', {
+        duration: 1,
+        y: 50,
+        delay: 3.2,
+        opacity: 0,
+        ease: 'power1.inOut',
+        stagger: { amount: 0.2 },
+      });
+      var action = gsap.timeline().from('.feature-content', {
+        opacity: 0,
+        duration: 1,
+        y: -100,
+        ease: Power1,
+        stagger: { amount: 0.4 },
+        delay: 0.6,
+      });
+
+      // ScrollNav
+      const body = document.getElementById('body');
+
+      window.addEventListener('scroll', () => {
+        var element = document.getElementById('nav');
+        var scrollPercent = $(window).scrollTop() / window.innerHeight;
+        if (scrollPercent > 0.1)
+          element.style.backgroundColor = `rgba(255, 255, 255, ${scrollPercent})`;
+        else element.style.backgroundColor = 'transparent';
+      });
+
+      // scrollmagic
+      var controller = new ScrollMagic.Controller();
+
+      new ScrollMagic.Scene({
+        triggerElement: '.stories',
+        triggerHook: 2.5,
+        reverse: true,
+      })
+        .setTween(action)
+        .addTo(controller);
     });
-    
-
-  // ScrollNav
-  const body = document.getElementById("body");
-  
-  window.addEventListener("scroll", () => {
-    var element = document.getElementById("nav");
-    var scrollPercent = ($(window).scrollTop()/window.innerHeight);
-    if(scrollPercent > 0.1)
-      element.style.backgroundColor = `rgba(255, 255, 255, ${scrollPercent})`;
-    else
-      element.style.backgroundColor = "transparent";
-  });
-
-  // scrollmagic
-  var controller = new ScrollMagic.Controller();
-
-  new ScrollMagic.Scene({
-    triggerElement: ".stories",
-    triggerHook: 2.5,
-    reverse: true
-  })
-    .setTween(action)
-    .addTo(controller);
-  });
-    
-</script>
+  </script>
 </body>

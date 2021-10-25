@@ -1,7 +1,11 @@
-#nav > h2{
-    color: white;
+#nav > h2 {
+  color: #991a0e;
 }
 
-.hamburger > div{
-    background-color: white !important;
+a#anchor:focus {
+  background-color: #991a0e;
+}
+
+.hamburger > div {
+  background-color: #991a0e !important;
 }
