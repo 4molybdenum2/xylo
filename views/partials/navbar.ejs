@@ -1,32 +1,35 @@
+<head>
+  <link rel="stylesheet" href="../../css/navbar.css" />
+</head>
+
 <nav id="nav">
-    <h2 id="xylo">.xylo</h2>
-    <div class="menu-wrap">
-      <input type="checkbox" class="toggler" id="hamburger-icon" />
-      <div class="hamburger">
-        <div></div>
-      </div>
-      <div class="menu">
+  <h2 id="xylo">.xylo</h2>
+  <div class="menu-wrap">
+    <input type="checkbox" class="toggler" id="hamburger-icon" />
+    <div class="hamburger">
+      <div class="hb-menu"></div>
+    </div>
+    <div class="menu">
+      <div>
         <div>
-          <div>
-            <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/stories">Stories</a></li>
-              <li><a href="register">Register</a></li>
-              <li><a href="login">Login</a></li>
-            </ul>
-          </div>
+          <ul>
+            <li><a id="anchor" href="/">Home</a></li>
+            <li><a id="anchor" href="/stories">Stories</a></li>
+            <li><a id="anchor" href="register">Register</a></li>
+            <li><a id="anchor" href="login">Login</a></li>
+          </ul>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <script>
-    $(document).on( 
-      'keydown', function(event) { 
-        if (event.key == "Escape") { 
-            if($(".toggler").is(":checked")){
-              $(".toggler").prop('checked', false);
-            }
-        } 
-    });
-  </script>
+<script>
+  $(document).on('keydown', function (event) {
+    if (event.key == 'Escape') {
+      if ($('.toggler').is(':checked')) {
+        $('.toggler').prop('checked', false);
+      }
+    }
+  });
+</script>

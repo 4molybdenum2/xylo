@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -16,7 +16,7 @@
 }
 
 .bgOpacity {
-  background: url("/assets/loginBg.jpg");
+  background: url('/assets/loginBg.jpg');
   background-size: cover;
   opacity: 0.6;
   z-index: 1;
@@ -51,7 +51,7 @@ form {
   min-height: 335px;
 }
 
-a{
+a {
   display: block;
   width: 100%;
   text-align: center;
@@ -95,7 +95,7 @@ a{
   pointer-events: none;
 }
 
-#submit-button{
+#submit-button {
   font-weight: 600;
   background-color: black;
   color: white;
@@ -107,11 +107,21 @@ a{
   cursor: pointer;
 }
 
-#register-button{
+#register-button {
   text-decoration: none;
   font-weight: 600;
 }
 
-#register-button:hover{
+#register-button:hover,
+#register-button:focus {
   color: red;
+}
+
+#submit-button:focus,
+#submit-button:hover {
+  transition: all 0.3s;
+  border: 2px solid black;
+  transform: scale(1.1, 1.1);
+  color: black;
+  background-color: white;
 }
