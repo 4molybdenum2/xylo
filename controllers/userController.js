@@ -3,18 +3,16 @@ const connection = require("../db/db");
 const noError = { isError: false, msgTitle: "", msgBody: "" };
 var postId = undefined;
 
-exports.admin = (req, res) => {
+exports.admin = async(req, res) => {
   if (req.session.userId) {
     if (req.session.userType == "A") res.redirect("/dashboard");
     else res.status(403).send("Not allowed");
   } else res.render("login", noError);
 }
 
-exports.redirectToLogin = (req, res) => {
+exports.redirectToLogin = async(req, res) => {
   if (req.session.userId)
-    req.session.userType == "A" ?
-    res.redirect("/dashboard") :
-    res.redirect("/stories");
+    req.session.userType == "A" ? res.redirect("/dashboard") : res.redirect("/stories");
   else
     res.render("login", {
       email: req.query.mail,
@@ -26,9 +24,7 @@ exports.redirectToLogin = (req, res) => {
 
 exports.redirectToRegister = (req, res) => {
   if (req.session.userId)
-    req.session.userType == "A" ?
-    res.redirect("/dashboard") :
-    res.redirect("/stories");
+    req.session.userType == "A" ? res.redirect("/dashboard") : res.redirect("/stories");
   else res.render("register", noError);
 }
 
@@ -44,10 +40,8 @@ exports.dashboard = (req, res) => {
           posts: []
         },
         (e, html) => {
-          let query =
-            "select * from posts where uid = " +
-            connection.escape(parseInt(req.session.userId));
-          let postList = [];
+          let query = "select * from posts where uid = " + connection.escape(parseInt(req.session.userId));
+            let postList = [];
           connection.query({ sql: query, timeout: 30000, typeCast: false },
             (e, result) => {
               if (e) {
@@ -62,19 +56,8 @@ exports.dashboard = (req, res) => {
                 });
 
                 if (postId.length) {
-                    connection.query({
-                          sql: "update posts set fileurl = " +
-                              connection.escape(
-                                  req.query.fileurl.substring(
-                                      1,
-                                      req.query.fileurl.length - 2
-                                  )
-                              ) +
-                              " where id = " +
-                              connection.escape(postId),
-                          timeout: 30000
-                        },
-                        e => {
+                    connection.query({sql: "update posts set fileurl = " + connection.escape(req.query.fileurl.substring(1,req.query.fileurl.length - 2)) + " where id = " + connection.escape(postId), timeout: 30000
+                        },e => {
                             if (e)
                                 res.status(500).render("errorPage", {
                                     error: "Server Error\n" + e.sqlMessage,
@@ -87,9 +70,7 @@ exports.dashboard = (req, res) => {
                 postList.forEach(element => {
                   fx = element.fileurl;
                   if (fx != "test") {
-                    fileurl2 =
-                      "https://drive.google.com/uc?id=" +
-                      fx.slice(fx.search("d/") + 2, fx.search("/view"));
+                    fileurl2 = "https://drive.google.com/uc?id=" + fx.slice(fx.search("d/") + 2, fx.search("/view"));
                     element.fileurl = fileurl2;
                   }
                 });
@@ -126,9 +107,7 @@ exports.logout = (req, res) => {
 }
 
 exports.error_GET = (req, res) => {
-    res
-        .status(404)
-        .render("errorPage", { error: "Page Not Found", errorCode: 404 });
+    res.status(404).render("errorPage", { error: "Page Not Found", errorCode: 404 });
 }
 
 exports.uploadPost = (req, res) => {
@@ -149,9 +128,7 @@ exports.uploadPost = (req, res) => {
                 "test"
             ]
         ];
-        connection.query(
-            "INSERT INTO posts (title, post_date, place, content, uid, author, fileurl) values ?", [val],
-            (e, dbResult) => {
+        connection.query("INSERT INTO posts (title, post_date, place, content, uid, author, fileurl) values ?", [val],(e, dbResult) => {
                 if (e)
                     res.status(500).render("errorPage", {
                         error: "Server Error\n" + e.sqlMessage,
@@ -213,10 +190,9 @@ exports.register = (req, res) => {
                     ];
                     connection.query({ sql: query, timeout: 20000 }, [val], err => {
                         if (err)
-                            res
-                            .status(500)
-                            .render("errorPage", { error: err, errorCode: 500 });
-                        else res.redirect(`/login?mail=${mail}`);
+                            res.status(500).render("errorPage", { error: err, errorCode: 500 });
+                        else 
+                            res.redirect(`/login?mail=${mail}`);
                     });
                 });
             }
@@ -256,9 +232,7 @@ exports.login = (req, res) => {
                             req.session.userId = user.id;
                             req.session.userName = user.name;
                             req.session.userType = user.user_type;
-                            req.session.userType == "A" ?
-                                res.redirect("/dashboard") :
-                                res.redirect("/stories");
+                            req.session.userType == "A" ? res.redirect("/dashboard") : res.redirect("/stories");
                         } else {
                             res.render("login", {
                                 email: mail,
@@ -282,7 +256,5 @@ exports.login = (req, res) => {
 }
 
 exports.error_POST = (req, res) => {
-    res
-        .status(400)
-        .render("errorPage", { error: "Invalid request", errorCode: 400 });
+    res.status(400).render("errorPage", { error: "Invalid request", errorCode: 400 });
 }
