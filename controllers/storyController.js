@@ -1,9 +1,9 @@
 const connection = require("../db/db");
 
-exports.getHomepageStories = (req, res) => {
-    res.render("index", { loading: true, postList: [] }, (e, html) => {
+exports.getHomepageStories = async(req, res) => {
+    res.render("index", { loading: true, postList: [] }, async(e, html) => {
         var sql = "select * from posts order by post_date desc limit 3";
-        connection.query({ sql: sql, timeout: 30000 }, (e, result) => {
+        await connection.query({ sql: sql, timeout: 30000 }, (e, result) => {
             if (e)
                 res.status(500).render("errorPage", {
                     error: "Server Error\n" + e.sqlMessage,
@@ -23,10 +23,7 @@ exports.getHomepageStories = (req, res) => {
                         //trim the string to the maximum length
                         var trimmedString = element.content.substr(0, 60);
                         //re-trim if we are in the middle of a word and
-                        trimmedString = trimmedString.substr(
-                            0,
-                            Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))
-                        );
+                        trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
                         trimmedContent.push(trimmedString);
                     } else {
                         trimmedContent.push(element.content);
@@ -39,10 +36,7 @@ exports.getHomepageStories = (req, res) => {
                         //trim the string to the maximum length
                         var trimmedStringHead = element.title.substr(0, 20);
                         //re-trim if we are in the middle of a word and
-                        trimmedStringHead = trimmedStringHead.substr(
-                            0,
-                            Math.min(trimmedStringHead.length, trimmedStringHead.lastIndexOf(" "))
-                        );
+                        trimmedStringHead = trimmedStringHead.substr(0, Math.min(trimmedStringHead.length, trimmedStringHead.lastIndexOf(" ")));
                         trimmedHeading.push(trimmedStringHead);
                     } else {
                         trimmedHeading.push(element.title);
@@ -51,9 +45,7 @@ exports.getHomepageStories = (req, res) => {
 
                 posts.forEach(element => {
                     fx = element.fileurl;
-                    fileurl2 =
-                        "https://drive.google.com/uc?id=" +
-                        fx.slice(fx.search("d/") + 2, fx.search("/view"));
+                    fileurl2 = "https://drive.google.com/uc?id=" + fx.slice(fx.search("d/") + 2, fx.search("/view"));
                     element.fileurl = fileurl2;
                 });
 
@@ -68,14 +60,11 @@ exports.getHomepageStories = (req, res) => {
     });
 }
 
-exports.getStories = (req, res) => {
+exports.getStories = async(req, res) => {
     let query = "select * from posts";
-    connection.query({ sql: query, timeout: 60000 }, (e, rows) => {
+    await connection.query({ sql: query, timeout: 60000 }, (e, rows) => {
         if (e)
-            res.status(500).render("errorPage", {
-                error: "Server Error\n" + e.sqlMessage,
-                errorCode: 500
-            });
+            res.status(500).render("errorPage", { error: "Server Error\n" + e.sqlMessage, errorCode: 500 });
         else {
             var posts = [];
             if (rows.length) {
@@ -86,9 +75,7 @@ exports.getStories = (req, res) => {
 
             posts.forEach(element => {
                 fx = element.fileurl;
-                fileurl2 =
-                    "https://drive.google.com/uc?id=" +
-                    fx.slice(fx.search("d/") + 2, fx.search("/view"));
+                fileurl2 = "https://drive.google.com/uc?id=" + fx.slice(fx.search("d/") + 2, fx.search("/view"));
                 element.fileurl = fileurl2;
             });
 
@@ -98,10 +85,7 @@ exports.getStories = (req, res) => {
                     //trim the string to the maximum length
                     var trimmedString = element.content.substr(0, 60);
                     //re-trim if we are in the middle of a word and
-                    trimmedString = trimmedString.substr(
-                        0,
-                        Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))
-                    );
+                    trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
                     trimmedContent.push(trimmedString);
                 } else {
                     trimmedContent.push(element.content);
@@ -114,10 +98,7 @@ exports.getStories = (req, res) => {
                     //trim the string to the maximum length
                     var trimmedStringHead = element.title.substr(0, 20);
                     //re-trim if we are in the middle of a word and
-                    trimmedStringHead = trimmedStringHead.substr(
-                        0,
-                        Math.min(trimmedStringHead.length, trimmedStringHead.lastIndexOf(" "))
-                    );
+                    trimmedStringHead = trimmedStringHead.substr(0, Math.min(trimmedStringHead.length, trimmedStringHead.lastIndexOf(" ")));
                     trimmedHeading.push(trimmedStringHead);
                 } else {
                     trimmedHeading.push(element.title);
@@ -134,53 +115,30 @@ exports.getStories = (req, res) => {
     });
 }
 
-exports.getStory = (req, res) => {
+exports.getStory = async(req, res) => {
     var sql = 'SELECT * FROM posts LIMIT 1 OFFSET ' + connection.escape(parseInt(req.params.id));
-    connection.query({ sql: sql, timeout: 30000 }, (err, rows) => {
+    await connection.query({ sql: sql, timeout: 30000 }, async(err, rows) => {
         if (err)
-            res.status(500).render("errorPage", {
-                error: "Server Error\n" + err.sqlMessage,
-                errorCode: 500
-            });
+            res.status(500).render("errorPage", { error: "Server Error\n" + err.sqlMessage, errorCode: 500 });
         else {
             if (!rows.length) res.render("errorPage", { errorCode: 404 });
             else {
                 obj = { print: [rows[0]] };
                 fx = obj.print[0].fileurl;
-                fileurl =
-                    "https://drive.google.com/uc?id=" +
-                    fx.slice(fx.search("d/") + 2, fx.search("/view"));
-
+                fileurl = "https://drive.google.com/uc?id=" + fx.slice(fx.search("d/") + 2, fx.search("/view"));
                 var comment = [];
-                connection.query({
-                        sql: "SELECT person_name, content FROM comments WHERE post_id = " +
-                            connection.escape(obj.print[0].id),
-                        timeout: 20000
-                    },
-                    (e, result) => {
+                await connection.query({ sql: "SELECT person_name, content FROM comments WHERE post_id = " + connection.escape(obj.print[0].id), timeout: 20000 },
+                    async(e, result) => {
                         if (e)
-                            res.status(500).render("errorPage", {
-                                error: "Server Error\n" + e.sqlMessage,
-                                errorCode: 500
-                            });
+                            res.status(500).render("errorPage", { error: "Server Error\n" + e.sqlMessage, errorCode: 500 });
                         if (result.length) {
-                            result.forEach(element => {
-                                comment.push(element);
-                            });
+                            result.forEach(element => { comment.push(element); });
                         }
 
-                        connection.query({
-                                sql: "select count(*) as count, value from likes where pid = " +
-                                    connection.escape(obj.print[0].id) +
-                                    " group by value",
-                                timeout: 15000
-                            },
-                            (er, result2) => {
+                        await connection.query({ sql: "select count(*) as count, value from likes where pid = " + connection.escape(obj.print[0].id) + " group by value", timeout: 15000 },
+                            async(er, result2) => {
                                 if (er)
-                                    res.status(500).render("errorPage", {
-                                        error: "Server Error\n" + e.sqlMessage,
-                                        errorCode: 500
-                                    });
+                                    res.status(500).render("errorPage", { error: "Server Error\n" + e.sqlMessage, errorCode: 500 });
                                 else {
                                     var like, dis;
                                     if (result2.length == 2) {
@@ -196,12 +154,9 @@ exports.getStory = (req, res) => {
                                         }
                                     } else like = dis = 0;
 
-                                    connection.query({ sql: "select count(*) as cnt from posts", timeout: 20000 }, (ex, rescount) => {
+                                    await connection.query({ sql: "select count(*) as cnt from posts", timeout: 20000 }, (ex, rescount) => {
                                         if (ex)
-                                            res.status(500).render("errorPage", {
-                                                error: "Server Error\n" + ex.sqlMessage,
-                                                errorCode: 500
-                                            });
+                                            res.status(500).render("errorPage", { error: "Server Error\n" + ex.sqlMessage, errorCode: 500 });
                                         else {
                                             res.render("stories", {
                                                 obj: obj,
@@ -225,34 +180,19 @@ exports.getStory = (req, res) => {
     });
 }
 
-exports.updateLikes = (req, res) => {
-    let query =
-        "select * from likes where pid = " +
-        connection.escape(req.body.post_id) +
-        " and uid = " +
-        connection.escape(req.session.userId);
+exports.updateLikes = async(req, res) => {
+    let query = "select * from likes where pid = " + connection.escape(req.body.post_id) + " and uid = " + connection.escape(req.session.userId);
     let like_or_dislike = req.body.ld == "like" ? 2 : 1;
-    connection.query({ sql: query, timeout: 15000 }, (e, result) => {
+    connection.query({ sql: query, timeout: 15000 }, async(e, result) => {
         if (e)
-            res
-            .status(500)
-            .render("errorPage", { error: e.sqlMessage, errorCode: 500 });
+            res.status(500).render("errorPage", { error: e.sqlMessage, errorCode: 500 });
         else if (result.length) {
-            connection.query({
-                    sql: "update likes set value = " +
-                        connection.escape(like_or_dislike) +
-                        " where pid = " +
-                        connection.escape(req.body.post_id) +
-                        " and uid = " +
-                        connection.escape(req.session.userId),
-                    timeout: 15000,
-                },
+            await connection.query({ sql: "update likes set value = " + connection.escape(like_or_dislike) + " where pid = " + await connection.escape(req.body.post_id) + " and uid = " + connection.escape(req.session.userId), timeout: 15000, },
                 e => {
                     if (e)
-                        res
-                        .status(500)
-                        .render("errorPage", { error: e.sqlMessage, errorCode: 500 });
-                    else res.redirect("/stories/" + req.params.id);
+                        res.status(500).render("errorPage", { error: e.sqlMessage, errorCode: 500 });
+                    else
+                        res.redirect("/stories/" + req.params.id);
                 }
             );
         } else {
@@ -263,18 +203,17 @@ exports.updateLikes = (req, res) => {
                 value: like_or_dislike
             };
 
-            connection.query({ sql: query2, timeout: 15000 }, val, e => {
+            await connection.query({ sql: query2, timeout: 15000 }, val, e => {
                 if (e)
-                    res
-                    .status(500)
-                    .render("errorPage", { error: e.sqlMessage, errorCode: 500 });
-                else res.redirect("/stories/" + req.params.id);
+                    res.status(500).render("errorPage", { error: e.sqlMessage, errorCode: 500 });
+                else
+                    res.redirect("/stories/" + req.params.id);
             });
         }
     });
 }
 
-exports.addStory = (req, res) => {
+exports.addStory = async(req, res) => {
     const txt = req.body.content;
     if (!txt || !req.session.userId) res.status(400).send("Invalid Input");
 
@@ -284,11 +223,10 @@ exports.addStory = (req, res) => {
         person_name: req.session.userName,
         post_id: parseInt(req.body.post_id)
     };
-    connection.query({ sql: query, timeout: 30000 }, val, err => {
+    await connection.query({ sql: query, timeout: 30000 }, val, err => {
         if (err)
-            res
-            .status(500)
-            .render("errorPage", { error: err.sqlMessage, errorCode: 500 });
-        else res.redirect("/stories/" + req.params.id);
+            res.status(500).render("errorPage", { error: err.sqlMessage, errorCode: 500 });
+        else
+            res.redirect("/stories/" + req.params.id);
     });
 }
