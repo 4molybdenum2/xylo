@@ -58,6 +58,11 @@ password: pranshu
 - Run (`npm start`). This will start your server locally.
 - For running the app in production mode run (`npm run dev`).
 
+## COMMON ERROR
+
+- ![error](https://user-images.githubusercontent.com/75157493/138885228-928c5c05-3864-476b-a4c9-268f4e6ab41c.png)
+  If you get this error upon doing all the above steps, refer to this [link](https://stackoverflow.com/questions/50093144/mysql-8-0-client-does-not-support-authentication-protocol-requested-by-server).
+
 ## STATUS
 
 Hooray! Except a few minor bugs we are working on you can now visit
