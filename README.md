@@ -46,7 +46,14 @@ password: pranshu
 - You will have to first make a database named _xylo_ in your mysql server.
 - Then for running the app locally, it is important that you make a table named _posts_ in the database xylo.
 - For your ease, you can copy this command to make the table
-- (`CREATE TABLE POSTS title varchar(50), post_date date, place varchar(50), content varchar(250), uid varchar(50), author varchar(50), fileurl varchar(50)`).
+- (_CREATE TABLE POSTS
+  title varchar(50),
+  post_date date,
+  place varchar(50),
+  content varchar(250),
+  uid varchar(50),
+  author varchar(50),
+  fileurl varchar(50)_).
 - Run (`npm install`).
 - Run (`npm start`). This will start your server locally.
 - For running the app in production mode run (`npm run dev`).
